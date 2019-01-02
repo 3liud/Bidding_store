@@ -2,14 +2,14 @@
 {% block content %}
 	{% for post in posts %}
 		<article class="media content-section">
-			<img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+			<img class="rounded-circle article-img" src="{{ post.seller.profile.image.url }}">
             <div class="media-body">
               <div class="article-metadata">
-                 <a class="mr-2" href="{% url 'user-post' post.author.username %}">{{ post.author }}</a>
+                 <a class="mr-2" href="{% url 'user-post' post.seller.username %}">{{ post.seller }}</a>
                  <small class="text-muted">{{ post.date_posted|date:"H:i:s; F d, Y" }}</small>
               </div>
-              <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-              <p class="article-content">{{ post.content }}</p>
+              <h2><a class="article-title" href="{% url 'postsell-detail' post.id %}">{{ post.title }}</a></h2>
+                <img class="rounded-circle sell-img" src="{{ post.seller.profile.image.url }}">
             </div>
 		</article>
 	{% endfor %}

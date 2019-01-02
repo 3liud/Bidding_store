@@ -14,6 +14,7 @@ from django.views.generic import (
 def home(request):
 	context = {
 		'posts': PostSell.objects.all()
+		#'items':
 	}
 	return render(request, 'market/home.html', context)
 
@@ -34,7 +35,7 @@ class UserPostSellListView(ListView):
 	
 	def get_queryset(self):
 		user = get_object_or_404(User, username=self.kwargs.get('username'))
-		return PostSell.objects.filter(author=user).order_by('-date_posted')
+		return PostSell.objects.filter(seller=user).order_by('-date_posted')
 
 
 class PostSellDetailView(DetailView):
@@ -43,10 +44,10 @@ class PostSellDetailView(DetailView):
 
 class PostSellCreateView(LoginRequiredMixin, CreateView):
 	model = PostSell
-	fields = ['title', 'content']
+	fields = ['title', 'commodity']
 	
 	def form_valid(self, form):
-		form.instance.author = self.request.user
+		form.instance.seller = self.request.user
 		return super().form_valid(form)
 
 

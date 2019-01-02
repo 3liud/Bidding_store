@@ -6,16 +6,17 @@
              <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
         <div class="media-body">
 	        <h2 class="account-heading">{{ user.last_name}} {{user.first_name }}</h2>
-             <h3 class="account-username">@{{ user.username }}</h3>
-	         <p class="text-secondary">{{ user.email }}.com</p>
+            <fieldset>
+                <h3 class="account-username">@{{ user.username }}</h3>
+            </fieldset>
     </div>
   </div>
 	<form method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 			<fieldset class="form-group">
 				<legend class="border-bottom mb-4">Profile Info</legend>
-				{{ u_form|crispy}}
-				{{ p_form|crispy}}
+				{{ u_form|crispy }}
+				{{ p_form|crispy }}
 			</fieldset>
 			<div class="form-group">
 				<button class="btn-outline-info" type="submit">Update</button>
