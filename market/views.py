@@ -14,7 +14,6 @@ from django.views.generic import (
 def home(request):
 	context = {
 		'posts': PostSell.objects.all()
-		#'items':
 	}
 	return render(request, 'market/home.html', context)
 
@@ -44,24 +43,24 @@ class PostSellDetailView(DetailView):
 
 class PostSellCreateView(LoginRequiredMixin, CreateView):
 	model = PostSell
-	fields = ['title', 'commodity']
+	fields = ['title', 'description', 'price', 'commodity']
 	
 	def form_valid(self, form):
 		form.instance.seller = self.request.user
 		return super().form_valid(form)
-
+	
 
 class PostSellUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = PostSell
-	fields = ['title', 'content']
+	fields = ['title', 'description', 'price', 'commodity']
 	
 	def form_valid(self, form):
-		form.instance.author = self.request.user
+		form.instance.seller = self.request.user
 		return super().form_valid(form)
 	
 	def test_func(self):
 		post = self.get_object()
-		if self.request.user == post.author:
+		if self.request.user == post.seller:
 			return True
 		return False
 
@@ -72,7 +71,7 @@ class PostSellDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	
 	def test_func(self):
 		post = self.get_object()
-		if self.request.user == post.author:
+		if self.request.user == post.seller:
 			return True
 		return False
 
