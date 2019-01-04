@@ -10,12 +10,14 @@
               </div>
               <h2><a class="article-title" href="{% url 'postsell-detail' post.id %}">{{ post.title }}</a></h2>
                 <img class="sell-img sell-img" src="{{ object.seller.commodity.image.url }}">
-                <p>
-                    <label class="mr-4">${{ post.price }}</label>
-                </p>
-                <p>
-                    <a class="btn btn-outline-info mb-4" href="#">Bid</a>
-                </p>
+                <fieldset>
+                    <p>
+                        <label class="mr-4">${{ post.price }}</label>
+                    </p>
+                    <p>
+                        <a class="btn btn-outline-info mb-4" href="#">Bid</a>
+                    </p>
+                </fieldset>
             </div>
 		</article>
 	{% endfor %}

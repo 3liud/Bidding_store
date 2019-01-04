@@ -5,7 +5,7 @@ from .views import (
 	PostSellListView,
 	PostSellUpdateView,
 	UserPostSellListView,
-	PostSellCreateView,
+	PostSellCreateView
 )
 from . import views
 
