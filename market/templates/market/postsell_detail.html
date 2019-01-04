@@ -15,8 +15,9 @@
 	              {% endif %}
               </div>
               <h2 class="article-title">{{ object.title }}</h2>
-            <img class="sell-img sell-img" src="{{ object.seller.commodity.profile.image.url }}">
-              <p class="article-content">{{ object.description }}</p>
+            <img class="sell-img sell-img" src="{{ object.commodity}}">
+              <p class="article-content">{{ post.commodity.url  }}</p>
+            <p class="article-content">{{ object.price }}</p>
             </div>
 		</article>
 {% endblock content %}

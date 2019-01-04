@@ -9,7 +9,7 @@
                  <small class="text-muted">{{ post.date_posted|date:"H:i:s; F d, Y" }}</small>
               </div>
               <h2><a class="article-title" href="{% url 'postsell-detail' post.id %}">{{ post.title }}</a></h2>
-                <img class="sell-img sell-img" src="{{ object.seller.commodity.image.url }}">
+                <img class="sell-img sell-img" src="{{ post.commodity.url  }}">
                 <fieldset>
                     <p>
                         <label class="mr-4">${{ post.price }}</label>
