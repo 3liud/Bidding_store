@@ -5,7 +5,7 @@ from django.urls import reverse
 
 
 class PostSell(models.Model):
-	title = models.CharField(max_length=50)
+	title = models.CharField(max_length=100)
 	commodity = models.ImageField(null=False, default='', upload_to='commodity_pics')
 	description = models.TextField(null=False, default='')
 	date_posted = models.DateTimeField(default=timezone.now)

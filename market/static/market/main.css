@@ -30,7 +30,7 @@ ul {
 }
 
 .content-section {
-  background: #ffffff;
+  background: #cbd5db;
   padding: 10px 20px;
   border: 1px solid #dddddd;
   border-radius: 3px;
@@ -40,8 +40,23 @@ ul {
   box-shadow: 10px 10px 10px dimgrey;
 }
 
+.title-item{
+  color: #1d1c9d;
+  font-style: normal;
+  font-size: 30px;
+  font-weight: bolder;
+  text-transform: capitalize;
+}
+
 .article-title {
   color: #444444;
+}
+
+.container-sep {
+  background: khaki;
+  height: 12cm;
+  width: 10cm;
+  padding: auto;
 }
 
 a.article-title:hover {
@@ -62,8 +77,9 @@ a.article-title:hover {
 
 .sell-img {
   height: 10cm;
-  width: 7.5cm;
+  width: 8cm;
   margin-right: 16px;
+  padding: auto;
 }
 
 .article-metadata {

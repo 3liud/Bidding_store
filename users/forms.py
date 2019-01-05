@@ -26,7 +26,3 @@ class ProfileUpdateForm(forms.ModelForm):
 		fields = ['image']
 
 
-'''class SellItemForm(forms.ModelForm):
-	class Meta:
-		model = Profile
-		fields = ['description', 'title', 'commodity', 'price']'''

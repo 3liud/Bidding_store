@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404
 from .models import PostSell
-from PIL import Image
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import (
@@ -24,14 +23,14 @@ class PostSellListView(ListView):
 	template_name = 'market/home.html'  # <app>/<model>_<viewtype>.html
 	context_object_name = 'posts'
 	ordering = ['-date_posted']
-	paginate_by = 5
+	paginate_by = 3
 
 
 class UserPostSellListView(ListView):
 	model = PostSell
 	template_name = 'market/user_post.html'  # <app>/<model>_<viewtype>.html
 	context_object_name = 'posts'
-	paginate_by = 5
+	paginate_by = 3
 	
 	def get_queryset(self):
 		user = get_object_or_404(User, username=self.kwargs.get('username'))
@@ -44,7 +43,7 @@ class PostSellDetailView(DetailView):
 
 class PostSellCreateView(LoginRequiredMixin, CreateView):
 	model = PostSell
-	fields = ['title', 'description', 'price', 'commodity']
+	fields = ['title', 'commodity', 'description', 'price']
 	
 	def form_valid(self, form):
 		form.instance.seller = self.request.user

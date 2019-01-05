@@ -11,12 +11,11 @@
 		                 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'postsell-update' object.id %}">Update</a>
 			              <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'postsell-delete' object.id %}">Delete</a>
 		              </div>
-
 	              {% endif %}
               </div>
               <h2 class="article-title">{{ object.title }}</h2>
-            <img class="sell-img sell-img" src="{{ object.commodity}}">
-              <p class="article-content">{{ post.commodity.url  }}</p>
+            <img class="sell-img sell-img" src="{{ object.commodity.url}}">
+              <p class="article-content">{{ post.commodity.url }}</p>
             <p class="article-content">{{ object.price }}</p>
             </div>
 		</article>
