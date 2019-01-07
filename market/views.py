@@ -43,7 +43,7 @@ class PostSellDetailView(DetailView):
 
 class PostSellCreateView(LoginRequiredMixin, CreateView):
 	model = PostSell
-	fields = ['title', 'commodity', 'description', 'price']
+	fields = ['title', 'description', 'commodity', 'price']
 	
 	def form_valid(self, form):
 		form.instance.seller = self.request.user
@@ -52,7 +52,7 @@ class PostSellCreateView(LoginRequiredMixin, CreateView):
 
 class PostSellUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = PostSell
-	fields = ['title', 'description', 'price', 'commodity']
+	fields = ['title', 'description', 'commodity', 'price']
 	
 	def form_valid(self, form):
 		form.instance.seller = self.request.user
