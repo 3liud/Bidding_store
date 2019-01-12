@@ -1,5 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.contrib import messages
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import PostSell
+from django.contrib.auth.decorators import login_required
+from .forms import PlaceBid
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import (
@@ -78,3 +81,22 @@ class PostSellDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def about(request):
 	return render(request, 'market/about.html', {'title': 'About'})
+
+
+@login_required
+def bid(request):
+	if request.method == 'POST':
+		bid_form = PlaceBid(request.POST, instance=request.user)
+		if bid_form.is_valid():
+			bid_form.save()
+			messages.success(request, f'Your account has been updated successfully')
+			return redirect('market-home')
+	
+	else:
+		bid_form = PlaceBid(instance=request.user)
+	
+	context = {
+		'bid_form': bid_form,
+	}
+	return render(request, 'market/postsell_detail.html', context)
+

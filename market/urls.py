@@ -16,5 +16,6 @@ urlpatterns = [
 	path('postsell/new/', PostSellCreateView.as_view(), name='postsell-create'),
 	path('post/<int:pk>/update/', PostSellUpdateView.as_view(), name='postsell-update'),
 	path('post/<int:pk>/delete/', PostSellDeleteView.as_view(), name='postsell-delete'),
+	path('post/placebid/', PostSell_views.place, name='postsell-delete'),
 	path('about/', views.about, name='market-about'),
 ]

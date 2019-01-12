@@ -9,6 +9,10 @@ h1, h2, h3, h4, h5, h6 {
   color: #444444;
 }
 
+.body_holder{
+  margin: 5rem;
+}
+
 ul {
   margin: 0;
 }
@@ -31,13 +35,13 @@ ul {
 
 .content-section {
   background: #cbd5db;
-  padding: 10px 20px;
+  padding: 5px 2px;
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
 }
 .container{
-  box-shadow: 10px 10px 10px dimgrey;
+  box-shadow: 2px 2px 2px dimgrey;
 }
 
 .title-item{

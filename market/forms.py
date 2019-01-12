@@ -1,8 +1,10 @@
 from django import forms
-from .models import PostSell
+from .models import Bid
 
 
-class PostSellUpdateForm(forms.ModelForm):
+class PlaceBid(forms.ModelForm):
+	email = forms.EmailField()
+	
 	class Meta:
-		model = PostSell
-		fields = ['image']
+		model = Bid
+		fields = ['bid_price']
