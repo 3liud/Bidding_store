@@ -9,8 +9,19 @@ h1, h2, h3, h4, h5, h6 {
   color: #444444;
 }
 
+.section_left{
+  float: left;
+}
+
+.section_right{
+  float: right;
+}
+
 .body_holder{
   margin: 5rem;
+  margin-left: .5rem;
+  margin-right: .5rem;
+  padding: 1rem;
 }
 
 ul {
@@ -35,13 +46,14 @@ ul {
 
 .content-section {
   background: #cbd5db;
-  padding: 5px 2px;
+  padding: 2rem;
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
 }
 .container{
   box-shadow: 2px 2px 2px dimgrey;
+  padding: 1rem;
 }
 
 .title-item{
@@ -60,7 +72,7 @@ ul {
   background: khaki;
   height: 12cm;
   width: 10cm;
-  padding: auto;
+  padding: 2rem;
 }
 
 a.article-title:hover {
@@ -83,11 +95,11 @@ a.article-title:hover {
   height: 10cm;
   width: 8cm;
   margin-right: 16px;
-  padding: auto;
+  padding: 0.5rem;
 }
 
 .article-metadata {
-  padding-bottom: 1px;
+  padding: .5rem;
   margin-bottom: 4px;
   border-bottom: 1px solid #e3e3e3
 }

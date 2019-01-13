@@ -16,9 +16,11 @@
             </div>
             <h2 class="article-title">{{ object.title }}</h2>
             <img class="sell-img sell-img" src="{{ object.commodity.url }}">
-            <p class="article-content">{{ object.description }}</p>
-            <p class="article-content">{{ object.price }}</p>
-            <p class="article-content">{{ object.time }} minutes </p>
+            <fieldset>
+                <p>{{ object.description }}</p>
+                <p><label class="mr-4">${{ object.price }}</label></p>
+                <p><a class="btn btn-outline-info mb-4" href="#">Bid</a></p>
+            </fieldset>
         </div>
     </article>
 {% endblock content %}
