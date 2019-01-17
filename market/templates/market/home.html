@@ -17,7 +17,12 @@
                         <p><a class="article-title" href="{% url 'postsell-detail' post.id %}">{{ post.title }}</a></p>
                         <p>{{ post.description }}</p>
                         <p><label class="mr-4">${{ post.price }}</label></p>
-                        <p><a class="btn btn-outline-info mb-4" href="#">Bid</a></p>
+                        <p><a class="btn btn-outline-info mb-4" href="{% url 'bid-detail' post.id %}">Bid</a></p>
+                    </fieldset>
+                    <fieldset>
+                        {% for posted-bid in posted-bids %}
+                          <p><label class="mr-4">{{ posted-bid.bid_price }}</label></p>
+                        {% endfor %}
                     </fieldset>
                 </article>
             </div>

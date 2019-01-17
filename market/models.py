@@ -24,14 +24,15 @@ class PostSell(models.Model):
 
 
 class Bid(models.Model):
-	bid_price = models.DecimalField(max_digits=10, decimal_places=2, default='0.00')
 	bidder = models.ForeignKey(User, on_delete=models.CASCADE)
-	
+
 	def __str__(self):
-		return self.bidder
+		return str(self.bidder)
 	
 	item = models.ForeignKey(PostSell, on_delete=models.CASCADE)
-	
-	def __str__(self):
-		return self.item
-	
+
+	def get_absolute_url(self):
+		return reverse('postsell-bid', kwargs={'pk': self.pk})
+
+	bid_price = models.DecimalField(max_digits=10, decimal_places=2, default='0.00')
+	bid_time = models.TimeField(default=timezone.now)

@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import PostSell
+from .models import PostSell, Bid
 from django.contrib.auth.decorators import login_required
 from .forms import PlaceBid
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -16,7 +16,8 @@ from django.views.generic import (
 
 def home(request):
 	context = {
-		'posts': PostSell.objects.all()
+		'posts': PostSell.objects.all(),
+		'posted-bids': Bid.objects.all()
 	}
 	return render(request, 'market/home.html', context)
 
@@ -42,6 +43,14 @@ class UserPostSellListView(ListView):
 
 class PostSellDetailView(DetailView):
 	model = PostSell
+
+
+class PostSellBidDetail(DetailView):
+	model = Bid
+
+
+class PostSellBidDetailView(DetailView):
+	model = Bid
 
 
 class PostSellCreateView(LoginRequiredMixin, CreateView):
