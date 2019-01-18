@@ -16,12 +16,13 @@
                     <fieldset>
                         <p><a class="article-title" href="{% url 'postsell-detail' post.id %}">{{ post.title }}</a></p>
                         <p>{{ post.description }}</p>
-                        <p><label class="mr-4">${{ post.price }}</label></p>
-                        <p><a class="btn btn-outline-info mb-4" href="{% url 'bid-detail' post.id %}">Bid</a></p>
+                        <p>seller's price:</p>
+                        <p><label class="btn btn-outline-info mr-3">Ksh. {{ post.price }}</label></p>
+                        <p><a class="btn btn-outline-info mb-5" href="{% url 'bid-detail' post.id %}">Go to Biding Table</a></p>
                     </fieldset>
                     <fieldset>
-                        {% for posted-bid in posted-bids %}
-                          <p><label class="mr-4">{{ posted-bid.bid_price }}</label></p>
+                        {% for postedbid in postedbids %}
+                          <p><label class="mr-5">{{ postedbid.bid_price }}</label></p>
                         {% endfor %}
                     </fieldset>
                 </article>
