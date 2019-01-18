@@ -17,7 +17,7 @@ from django.views.generic import (
 def home(request):
 	context = {
 		'posts': PostSell.objects.all(),
-		'posted-bids': Bid.objects.all()
+		'postedbids': Bids.objects.all()
 	}
 	return render(request, 'market/home.html', context)
 
@@ -51,6 +51,12 @@ class PostSellBidDetail(DetailView):
 
 class PostSellBidDetailView(DetailView):
 	model = Bid
+
+	def test_func(self):
+		post = self.get_object()
+		if self.request.user == post.seller:
+			return False
+		return False
 
 
 class PostSellCreateView(LoginRequiredMixin, CreateView):
