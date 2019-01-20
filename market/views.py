@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import PostSell, Bid
 from django.contrib.auth.decorators import login_required
 from .forms import PlaceBid
+from itertools import chain
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import (
@@ -14,12 +15,22 @@ from django.views.generic import (
 )
 
 
-def home(request):
+def Fetcher(request):
+	object_list = sorted(chain(
+		PostSell.objects.all(),
+		Bid.objects.all()
+	),
+		key=lambda obj: obj.title)
+	
+	return render(request, 'market/home.html', object_list)
+
+
+'''def home(request):
 	context = {
 		'posts': PostSell.objects.all(),
-		'postedbids': Bids.objects.all()
+		'postedbids': Bid.objects.all()
 	}
-	return render(request, 'market/home.html', context)
+	return render(request, 'market/home.html', context)'''
 
 
 class PostSellListView(ListView):
@@ -51,7 +62,7 @@ class PostSellBidDetail(DetailView):
 
 class PostSellBidDetailView(DetailView):
 	model = Bid
-
+	
 	def test_func(self):
 		post = self.get_object()
 		if self.request.user == post.seller:
@@ -66,7 +77,16 @@ class PostSellCreateView(LoginRequiredMixin, CreateView):
 	def form_valid(self, form):
 		form.instance.seller = self.request.user
 		return super().form_valid(form)
+
+
+class BidCreateView(LoginRequiredMixin, CreateView):
+	model = Bid
+	fields = ['bid_price', 'bid_time']
 	
+	def form_valid(self, form):
+		form.instance.biddder = self.request.user
+		form.instance.item = self.request.title
+		
 
 class PostSellUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = PostSell
@@ -114,4 +134,3 @@ def bid(request):
 		'bid_form': bid_form,
 	}
 	return render(request, 'market/postsell_detail.html', context)
-

@@ -8,7 +8,8 @@ from .views import (
 	UserPostSellListView,
 	PostSellCreateView,
 	PostSellBidDetailView,
-	PostSellBidDetail
+	PostSellBidDetail,
+	BidCreateView
 )
 
 urlpatterns = [
@@ -20,5 +21,6 @@ urlpatterns = [
 	path('post/<int:pk>/delete/', PostSellDeleteView.as_view(), name='postsell-delete'),
 	path('bid/add', PostSellBidDetail.as_view(), name='postsell-bid'),
 	path('post/<int:pk>/', PostSellBidDetailView.as_view(), name='bid-detail'),
+	path('post/new/', BidCreateView.as_view(), name='postsell-bid'),
 	path('about/', views.about, name='market-about'),
 ]

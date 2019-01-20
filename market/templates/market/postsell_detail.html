@@ -16,11 +16,18 @@
             </div>
             <h2 class="article-title">{{ object.title }}</h2>
             <img class="sell-img sell-img" src="{{ object.commodity.url }}">
-            <fieldset>
-                <p>{{ object.description }}</p>
-                <p><label class="mr-4">${{ object.price }}</label></p>
-                <p><a class="btn btn-outline-info mb-4" href="#">Bid</a></p>
-            </fieldset>
+            <div class="content-section">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">place a bid</legend>
+                        {{ form|crispy }}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn-outline-info" type="submit">bid</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </article>
 {% endblock content %}
