@@ -1,7 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import PostSell
-from django.contrib.auth.decorators import login_required
+from django.urls import reverse
+
+from .models import PostSell, Bidder
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import (
@@ -30,29 +31,19 @@ class UserPostSellListView(ListView):
 	def get_queryset(self):
 		user = get_object_or_404(User, username=self.kwargs.get('username'))
 		return PostSell.objects.filter(seller=user).order_by('-date_posted')
-
-
+	
+	def get_success_url(self):
+		username = self.kwargs['user']
+		return reverse('user_post', kwargs={'user': username})
+	
+	
 class PostSellDetailView(DetailView):
 	model = PostSell
 
 
-'''class PostSellBidDetail(DetailView):
-	model = Bid
-
-
-class PostSellBidDetailView(DetailView):
-	model = Bid
-	
-	def test_func(self):
-		post = self.get_object()
-		if self.request.user == post.seller:
-			return False
-		return False'''
-
-
 class PostSellCreateView(LoginRequiredMixin, CreateView):
 	model = PostSell
-	fields = ['title', 'description', 'commodity', 'price']
+	fields = ['title', 'category', 'description', 'image', 'price']
 	
 	def form_valid(self, form):
 		form.instance.seller = self.request.user
@@ -85,6 +76,17 @@ class PostSellDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		return False
 
 
+class BidderListView(ListView):
+	model = Bidder
+	
+	def get_queryset(self):
+		return Bidder.objects.filter(product_id=self.kwargs['pk'])
+	
+	def get_context_data(self, **kwargs):
+		context = super(BidderListView, self).get_context_data(**kwargs)
+		context["product_id"] = self.kwargs['pk']
+		return context
+	
 '''@login_required
 def bid(request):
 	if request.method == 'POST':
@@ -147,3 +149,16 @@ def bid(request):
 	def form_valid(self, form):
 		form.instance.biddder = self.request.user
 		form.instance.item = self.request.title'''
+
+'''class PostSellBidDetail(DetailView):
+	model = Bid
+
+
+class PostSellBidDetailView(DetailView):
+	model = Bid
+
+	def test_func(self):
+		post = self.get_object()
+		if self.request.user == post.seller:
+			return False
+		return False'''

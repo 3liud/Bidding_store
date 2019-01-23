@@ -10,7 +10,7 @@
                     <small class="text-muted">{{ post.date_posted|date:"H:i:s; F d, Y" }}</small>
                 </div>
                 <h2><a class="article-title" href="{% url 'postsell-detail' post.id %}">{{ post.title }}</a></h2>
-                <img class=" block-image sell-img" src="{{ post.commodity.url }}">
+                <img class=" block-image sell-img" src="{{ post.image.url }}">
                 <p class="article-content">{{ post.description }}</p>
                 <p class="article-content">{{ post.price }}</p>
             </div>

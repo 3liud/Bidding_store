@@ -12,7 +12,7 @@
                     <a class="article-title" href="{% url 'postsell-detail' post.id %}">{{ post.title }}</a>
                 </p>
                 <article class="media content-section">
-                    <img class="sell-img sell-img" src="{{ post.commodity.url }}">
+                    <img class="sell-img sell-img" src="{{ post.image.url }}">
                     <fieldset>
                         <p><a class="article-title" href="{% url 'postsell-detail' post.id %}">{{ post.title }}</a></p>
                         <p>{{ post.description }}</p>

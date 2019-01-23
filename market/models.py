@@ -8,7 +8,7 @@ from django.urls import reverse
 class PostSell(models.Model):
 	title = models.CharField("Input the name of the Item you are selling", max_length=100)
 	description = models.TextField("Input some description of the item", null=False, default='')
-	commodity = models.ImageField("Let the buyer see what you are selling, upload a picture",
+	image = models.ImageField("Let the buyer see what you are selling, upload a picture",
 	                              null=False, default='', upload_to='commodity_pics')
 	date_posted = models.DateTimeField(default=timezone.now)
 	category = models.CharField("Choose product category", max_length=100, default='general')
@@ -57,20 +57,3 @@ class Bidder(models.Model):
 	def _unicode_(self):
 		return str(self.user_name)
 
-
-'''class Bid(models.Model):
-	bidder = models.ForeignKey(User, on_delete=models.CASCADE)
-	
-	def __str__(self):
-		return f'{self.item.title} Bidding'
-	
-	item = models.ForeignKey(PostSell, on_delete=models.CASCADE)
-	
-	def get_absolute_url(self):
-		return reverse('postsell-bid', kwargs={'pk': self.pk})
-	
-	bid_price = models.DecimalField(max_digits=10, decimal_places=2, default='0.00')
-	bid_time = models.TimeField(default=timezone.now)
-	
-	def save(self, **kwargs):
-		super().save()'''
