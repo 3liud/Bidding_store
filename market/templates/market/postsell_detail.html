@@ -1,4 +1,5 @@
 {% extends "market/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
     <article class="media content-section">
         <img class="rounded-circle article-img" src="{{ object.seller.profile.image.url }}">
@@ -16,18 +17,16 @@
             </div>
             <h2 class="article-title">{{ object.title }}</h2>
             <img class="sell-img sell-img" src="{{ object.commodity.url }}">
-            <div class="content-section">
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <fieldset class="form-group">
-                        <legend class="border-bottom mb-4">place a bid</legend>
-                        {{ form|crispy }}
-                    </fieldset>
-                    <div class="form-group">
-                        <button class="btn-outline-info" type="submit">bid</button>
-                    </div>
-                </form>
-            </div>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Bid Info</legend>
+                    {{ b_form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn-outline-info" type="submit">Place bid</button>
+                </div>
+            </form>
         </div>
     </article>
 {% endblock content %}

@@ -1,10 +1,11 @@
 from django import forms
-from .models import Bid
 
 
-class PlaceBid(forms.ModelForm):
-	email = forms.EmailField()
+'''class PlaceBidForm(forms.ModelForm):
+	price = forms.DecimalField(max_digits=10, decimal_places=2)
 	
 	class Meta:
 		model = Bid
-		fields = ['bid_price']
+		fields = ['bid_price']'''
+
+

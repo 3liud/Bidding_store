@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+
 from django.contrib.auth.decorators import login_required
 
 
@@ -27,7 +28,7 @@ def profile(request):
 			p_form.save()
 			messages.success(request, f'Your account has been updated successfully')
 			return redirect('profile')
-			
+	
 	else:
 		u_form = UserUpdateForm(instance=request.user)
 		p_form = ProfileUpdateForm(instance=request.user.profile)

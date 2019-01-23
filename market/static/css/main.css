@@ -1,0 +1,455 @@
+
+body {
+    background: #c0c0c0;
+    color: #333333;
+    margin-top: 5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #444444;
+}
+
+.section_left {
+    float: left;
+}
+
+.section_right {
+    float: right;
+}
+
+.body_holder {
+    margin: 5rem .5rem .25rem;
+    padding: 0.5rem;
+}
+
+ul {
+    margin: 0;
+}
+
+.bg-steel {
+    background-color: #002580;
+}
+
+.site-header .navbar-nav .nav-link {
+    color: #cbd5db;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+    color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+}
+
+.content-section {
+    background: #cbd5db;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0%;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.container {
+    box-shadow: 2px 2px 2px dimgrey;
+    padding-bottom: 1rem;
+}
+
+.container-1 {
+    color: #428bca;
+}
+
+.title-item {
+    color: #1d1c9d;
+    font-style: normal;
+    font-size: 30px;
+    font-weight: bolder;
+    text-transform: capitalize;
+}
+
+.article-title {
+    color: #444444;
+}
+
+.container-sep {
+    background: khaki;
+    height: 25%;
+    width: 15%;
+    padding: 2%;
+}
+
+a.article-title:hover {
+    color: #428bca;
+    text-decoration: none;
+}
+
+.article-content {
+    white-space: pre-line;
+    /*box-shadow: 10px 2px 2px aqua;*/
+}
+
+.article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 12px;
+}
+
+.sell-img {
+    height: 12cm;
+    width: 10cm;
+    margin-right: 16px;
+    padding: 0.5rem;
+}
+
+.article-metadata {
+    padding: .5rem;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e3e3e3
+}
+
+.article-metadata a:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+.article-svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+}
+
+.account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+}
+
+.account-heading {
+    font-size: 2.5rem;
+}
+
+.account-username {
+    font-size: 1.5rem;
+    color: #1d1c9d;
+    font-style: italic;
+    text-transform: lowercase;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+    float: left;
+    width: 45%;
+    padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {
+    margin: 0 -5px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Style the counter cards */
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+.footer-bottom p {
+    margin: 10px 0 0 0;
+    color: white;
+    font-size: 14px;
+}
+
+.footer-bottom {
+    background: rgba(11, 50, 255, 0.98);
+    padding: 10px 0;
+}
+
+.copyrights p, .diff p {
+    color: white;
+    font-size: 14px;
+    margin-top: 0;
+}
+
+.copyrights p a, .diff p a {
+    color: white;
+    margin-left: 2px;
+}
+
+.copyrights p a:hover, .diff p a:hover {
+    color: white;
+}
+
+.footer-social-icons ul li {
+    display: inline-block;
+    margin: 0 0.2em;
+}
+
+.footer-social-icons ul li a {
+    width: 30px;
+    height: 30px;
+    background: no-repeat 0px 0px;
+    display: inline-block;
+    position: relative;
+}
+
+.footer-social-icons ul li a span {
+    color: black;
+    position: absolute;
+    bottom: 0;
+    left: -25px;
+    right: -25px;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 2px;
+    background: white;
+    visibility: hidden;
+    opacity: 0;
+    -o-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -webkit-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -moz-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.footer-social-icons ul li a span:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid white;
+    position: absolute;
+    bottom: -5px;
+    left: 34px;
+}
+
+.footer-social-icons ul li a:hover span {
+    bottom: 41px;
+    visibility: visible;
+    opacity: 1;
+}
+
+.footer-social-icons ul li a.facebook {
+    background-position: 0px 0px;
+}
+
+.footer-social-icons ul li a.facebook:hover {
+    background-position: -0px -30px;
+}
+
+.footer-social-icons ul li a.twitter {
+    background-position: -30px 0px;
+}
+
+.footer-social-icons ul li a.twitter:hover {
+    background-position: -30px -30px;
+}
+
+.footer-social-icons ul li a.flickr {
+    background-position: -60px 0px;
+}
+
+.footer-social-icons ul li a.flickr:hover {
+    background-position: -60px -30px;
+}
+
+.footer-social-icons ul li a.googleplus {
+    background-position: -90px 0px;
+}
+
+.footer-social-icons ul li a.googleplus:hover {
+    background-position: -90px -30px;
+}
+
+.footer-social-icons ul li a.dribbble {
+    background-position: -120px 0px;
+}
+
+.footer-social-icons ul li a.dribbble:hover {
+    background-position: -120px -30px;
+}
+
+.footer-social-icons {
+    margin: 40px 0 15px 0;
+}
+
+.footer-logo a {
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 40px;
+    color: white;
+    text-decoration: none;
+}
+
+.footer-logo a span {
+    color: white;
+}
+
+.footer-logo a {
+    position: relative;
+    display: block;
+}
+
+.footer-logo a:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 35%;
+    height: 1px;
+    background: white;
+}
+
+.footer-logo a:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 35%;
+    height: 1px;
+    background: white;
+}
+
+@media (max-width: 767px) {
+    .icon {
+        border: 5px solid black;
+        padding: 1px;
+        margin: 1px;
+        height: 210px;
+        width: 150px;
+    }
+
+    .glyphicon-shopping-cart {
+        background-color: black;
+        color: white;
+        padding: 5px;
+        font-size: 3em;
+        border-radius: 50%;
+    }
+
+    .glyphicon-hourglass {
+        background-color: black;
+        color: white;
+        padding: 5px;
+        font-size: 3em;
+        border-radius: 50%;
+    }
+
+    .glyphicon-envelope {
+        background-color: black;
+        color: white;
+        padding: 5px;
+        font-size: 3em;
+        border-radius: 50%;
+    }
+
+    .carts .container h1 {
+        color: #fff;
+        font-size: 0.3rem;
+    }
+
+    .footer-logo a:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 35%;
+        height: 1px;
+        background: transparent;
+    }
+
+    .footer-logo a:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 35%;
+        height: 1px;
+        background: transparent;
+    }
+}
+
+@media (min-width: 768px) {
+    .icon {
+        border: 5px solid black;
+        padding: 5px;
+        margin: 5px;
+        height: 250px;
+    }
+
+    .glyphicon-shopping-cart {
+        background-color: black;
+        color: white;
+        padding: 10px;
+        font-size: 4em;
+        border-radius: 60%;
+    }
+
+    .glyphicon-hourglass {
+        background-color: black;
+        color: white;
+        padding: 10px;
+        font-size: 4em;
+        border-radius: 60%;
+    }
+
+    .glyphicon-envelope {
+        background-color: black;
+        color: white;
+        padding: 10px;
+        font-size: 4em;
+        border-radius: 60%;
+    }
+
+    .carts .container h1 {
+        color: #fff;
+        font-size: 1rem;
+    }
+
+    .footer-logo a:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 35%;
+        height: 1px;
+        background: transparent;
+    }
+
+    .footer-logo a:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 35%;
+        height: 1px;
+        background: transparent;
+    }
+}
