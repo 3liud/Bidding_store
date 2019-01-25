@@ -32,7 +32,7 @@
                 <!--Navbar Right Side -->
                 <div class="navbar-nav">
                     {% if user.is_authenticated %}
-                        <a class="navbar-item nav-link" href="{% url 'postsell-create' %}">Sell</a>
+                        <a class="navbar-item nav-link" href="{% url 'product-create' %}">Sell</a>
                         <a class="navbar-item nav-link" href="#">Ticket shop</a>
                         <a class="navbar-item nav-link" href="{% url 'profile' %}">Profile</a>
                         <a class="navbar-item nav-link" href="{% url 'logout' %}">logout</a>

@@ -2,24 +2,29 @@
 {% block content %}
     {% for post in object_list %}
         <article class="media content-section">
-            <img class="rounded-circle article-img" src="{{ post.seller.profile.image.url }}">
             <div class="media-body">
                 <div class="article-metadata">
-                    <a class="mr-2" href="{% url 'user-post' post.seller.username %}">{{ post.seller }}</a>
+                    <!--<a class="mr-2" href="#"</a>-->
+
                     <small class="text-muted">{{ post.date_posted|date:"H:i:s; F d, Y" }}</small>
                 </div>
                 <p class="title-item title-item">
-                    <a class="article-title" href="{% url 'postsell-detail' post.id %}">{{ post.title }}</a>
+                    <a class="article-title" href="{% url 'product-detail' post.id %}">{{ post.title }}</a>
                 </p>
                 <article class="media content-section">
                     <img class="sell-img sell-img" src="{{ post.image.url }}">
                     <fieldset>
-                        <p><a class="article-title" href="{% url 'postsell-detail' post.id %}">{{ post.title }}</a></p>
                         <p>{{ post.description }}</p>
+                        <hr style="border: 2px solid blue;"/>
+                        <p>The item will be in auction on:
+                        <p><b> {{ post.sell_on }}</b></p>
+                        <p> The item will be live for bidding for:
+                        <p><b>{{ post.live_time }} Minutes</b></p>
+                        <hr style="border: 2px solid grey;"/>
                         <p>seller's price:</p>
                         <p><label class="btn btn-outline-info mr-3">Ksh. {{ post.price }}</label></p>
+                        <hr style="border: 2px solid grey;"/>
                         <p><a class="btn btn-outline-info mb-5" href="#">Go to Biding Table</a></p>
-                        <p><label class="btn btn-outline-info mr-3">highest bid is: {{ post.bid_price }}</label></p>
                     </fieldset>
                 </article>
             </div>
