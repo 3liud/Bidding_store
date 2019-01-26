@@ -1,40 +1,58 @@
 {% extends "market/base.html" %}
-{% load crispy_forms_tags %}
 {% block content %}
+    {% load crispy_forms_tags %}
     <article class="media content-section">
-        <img class="rounded-circle article-img" src="{{ object.seller.profile.image.url }}">
         <div class="media-body">
             <div class="article-metadata">
-                <a class="mr-2" href="{% url 'user-post' object.seller.username %}">{{ object.seller }}</a>
-                <small class="text-muted">{{ object.date_posted|date:"H:i:s; F d, Y" }}</small>
-                {% if object.seller == user %}
+                <!--<a class="mr-2" href="#"</a>-->
+                {% if seller == user %}
                     <div>
-                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'postsell-update' object.id %}">Update</a>
-                        <a class="btn btn-danger btn-sm mt-1 mb-1"
-                           href="{% url 'postsell-delete' object.id %}">Delete</a>
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1"
+                           href="{% url 'post-update' object.id %}">Update</a>
+                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
                     </div>
                 {% endif %}
+                <p class="title-item title-item">
+                    <a class="article-title"> {{ object.title }}</a>
+                </p>
+                <p>{{ object.category }} category </p>
+                <small class="text-muted">{{ object.date_posted|date:"H:i:s; F d, Y" }}</small>
             </div>
-            {% if request.user.id  !=  seller.user_name_id %}
-                <div class="error">
-                    {% if error %}
-                        {{ error }}
+            <article class="media content-section">
+                <img class="sell-img sell-img" src="{{ object.image.url }}">
+                <fieldset>
+                    <p>{{ object.description }}</p>
+                    <hr style="border: 2px solid blue;"/>
+                    <p>The item will be in auction on:
+                    <p><b> {{ object.sell_on }}</b></p>
+                    <p> The item will be live for bidding for:
+                    <p><b>{{ object.live_time }} Minutes</b></p>
+                    <hr style="border: 2px solid grey;"/>
+                    <p>seller's price:</p>
+                    <p>
+                        <label class="btn btn-outline-info mr-3">Ksh. {{ object.price }}</label>
+                    </p>
+
+                    {% if request.user.id != seller.user_name.id %}
+                        <div class="error">
+                            {% if error %}
+                                {{ error }}
+                            {% endif %}
+                        </div>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="bid_amount" name="bid_amount"
+                                       placeholder="Enter your bid amount:" required><br>
+                                <input type="hidden" value='{{ product_list.price }}' name="minimum_price"
+                                       id="minimum_price">
+                                <input type="hidden" value='{{ product_list.id }}' name="product_id" id="product_id">
+                                <button class="btn btn-lg btn-block" type="submit">Bid</button>
+                            </div>
+                        </form>
                     {% endif %}
-                </div>
-                <form action="{% url 'save_bid' %}" method="POST">{% csrf_token %}
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="bid_amount" name="bid_amount"
-                               placeholder="Enter your bid amount" required><br>
-                        <input type="hidden" value='{{ product_list.minimum_price }}' name="minimum_price"
-                               id="minimum_price">
-                        <input type="hidden" value='{{ product_list.id }}' name="product_id" id="product_id">
-                        <button class="btn btn-lg btn-block" type="submit"
-                                style="background-color: black; color: white">Bid
-                        </button>
-                    </div>
-                </form>
-            {% endif %}
-            <button class="btn-outline-info" type="submit">Place bid</button>
+                </fieldset>
+            </article>
         </div>
     </article>
 {% endblock content %}

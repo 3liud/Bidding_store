@@ -28,5 +28,5 @@ def save_bid(request):
 				obj = Bidder(user_name=request.user, product_id=Product.objects.get(id=request.POST.get('product_id')),
 				             bid_amount=int(request.POST.get('bid_amount')))
 				obj.save()
-			return HttpResponseRedirect(reverse('view_product'))
+			return HttpResponseRedirect(reverse('view-product'))
 	return render(request, 'market/product_detail.html', context)

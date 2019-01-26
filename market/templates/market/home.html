@@ -5,8 +5,8 @@
             <div class="media-body">
                 <div class="article-metadata">
                     <!--<a class="mr-2" href="#"</a>-->
-
                     <small class="text-muted">{{ post.date_posted|date:"H:i:s; F d, Y" }}</small>
+                    <p>{{ post.category }} category </p>
                 </div>
                 <p class="title-item title-item">
                     <a class="article-title" href="{% url 'product-detail' post.id %}">{{ post.title }}</a>
@@ -24,12 +24,13 @@
                         <p>seller's price:</p>
                         <p><label class="btn btn-outline-info mr-3">Ksh. {{ post.price }}</label></p>
                         <hr style="border: 2px solid grey;"/>
-                        <p><a class="btn btn-outline-info mb-5" href="#">Go to Biding Table</a></p>
+                        <p><a class="btn btn-outline-info mb-5" href="{% url 'bidder-list' post.id %}">Bidding table</a></p>
                     </fieldset>
                 </article>
             </div>
         </article>
     {% endfor %}
+
     {% if is_paginated %}
         {% if page_obj.has_previous %}
             <a class="btn btn-outline-info mb-4" href="?page=1">First</a>

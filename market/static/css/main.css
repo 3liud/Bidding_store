@@ -2,7 +2,7 @@
 body {
     background: #c0c0c0;
     color: #333333;
-    margin-top: 5rem;
+    margin: 0 0 20px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -180,276 +180,73 @@ body {
         display: block;
         margin-bottom: 20px;
     }
-}
 
-.footer-bottom p {
-    margin: 10px 0 0 0;
-    color: white;
-    font-size: 14px;
-}
+    .navbar-inverse .navbar-brand {
+        color: white;
+    }
 
-.footer-bottom {
-    background: rgba(11, 50, 255, 0.98);
-    padding: 10px 0;
-}
+    .navbar-inverse .navbar-brand:hover,
+    .navbar-inverse .navbar-brand:focus {
+        color: #f8f8f8;
+    }
 
-.copyrights p, .diff p {
-    color: white;
-    font-size: 14px;
-    margin-top: 0;
-}
+    .nav.navbar-nav li a {
+        color: white;
+    }
 
-.copyrights p a, .diff p a {
-    color: white;
-    margin-left: 2px;
-}
+    .nav.navbar-nav li a:hover,
+    .nav.navbar-nav li a :focus {
+        color: #f8f8f8;
+    }
 
-.copyrights p a:hover, .diff p a:hover {
-    color: white;
-}
+    .nav.navbar-nav.navbar-right li a {
+        color: white;
+    }
 
-.footer-social-icons ul li {
-    display: inline-block;
-    margin: 0 0.2em;
-}
+    .nav.navbar-nav.navbar-right li a:hover,
+    .nav.navbar-nav.navbar-right li a :focus {
+        color: #f8f8f8;
+    }
 
-.footer-social-icons ul li a {
-    width: 30px;
-    height: 30px;
-    background: no-repeat 0px 0px;
-    display: inline-block;
-    position: relative;
-}
-
-.footer-social-icons ul li a span {
-    color: black;
+    .footer-bottom p {
+        margin: 20px 0 0 0;
+        bottom: 0;
+        left: 0px;
+        background: #1d1c9d;
+        position: fixed;
+        color: white;
+        font-size: 14px;
+    }
+    .footer {
     position: absolute;
     bottom: 0;
-    left: -25px;
-    right: -25px;
-    padding: 5px;
-    font-size: 14px;
-    border-radius: 2px;
-    background: white;
-    visibility: hidden;
-    opacity: 0;
-    -o-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    -webkit-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    -moz-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.footer-social-icons ul li a span:before {
-    content: '';
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid white;
-    position: absolute;
-    bottom: -5px;
-    left: 34px;
-}
-
-.footer-social-icons ul li a:hover span {
-    bottom: 41px;
-    visibility: visible;
-    opacity: 1;
-}
-
-.footer-social-icons ul li a.facebook {
-    background-position: 0px 0px;
-}
-
-.footer-social-icons ul li a.facebook:hover {
-    background-position: -0px -30px;
-}
-
-.footer-social-icons ul li a.twitter {
-    background-position: -30px 0px;
-}
-
-.footer-social-icons ul li a.twitter:hover {
-    background-position: -30px -30px;
-}
-
-.footer-social-icons ul li a.flickr {
-    background-position: -60px 0px;
-}
-
-.footer-social-icons ul li a.flickr:hover {
-    background-position: -60px -30px;
-}
-
-.footer-social-icons ul li a.googleplus {
-    background-position: -90px 0px;
-}
-
-.footer-social-icons ul li a.googleplus:hover {
-    background-position: -90px -30px;
-}
-
-.footer-social-icons ul li a.dribbble {
-    background-position: -120px 0px;
-}
-
-.footer-social-icons ul li a.dribbble:hover {
-    background-position: -120px -30px;
-}
-
-.footer-social-icons {
-    margin: 40px 0 15px 0;
-}
-
-.footer-logo a {
-    font-family: 'Ubuntu Condensed', sans-serif;
-    font-size: 40px;
-    color: white;
-    text-decoration: none;
-}
-
-.footer-logo a span {
-    color: white;
-}
-
-.footer-logo a {
-    position: relative;
-    display: block;
-}
-
-.footer-logo a:before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 35%;
-    height: 1px;
-    background: white;
-}
-
-.footer-logo a:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 0;
-    width: 35%;
-    height: 1px;
-    background: white;
-}
-
-@media (max-width: 767px) {
-    .icon {
-        border: 5px solid black;
-        padding: 1px;
-        margin: 1px;
-        height: 210px;
-        width: 150px;
+    height: 20px;
+    background: black;
+    width: 100%;
     }
 
-    .glyphicon-shopping-cart {
-        background-color: black;
+    .footer-bottom {
+        position: fixed;
+        background: black;
+        padding: 30px 0;
+        left: 0px;
+        bottom: 0;
+        height: 50px;
+        width: 100%;
+    }
+
+    .copyrights p, .diff p {
         color: white;
-        padding: 5px;
-        font-size: 3em;
-        border-radius: 50%;
+        font-size: 14px;
+        margin-top: 0;
     }
 
-    .glyphicon-hourglass {
-        background-color: black;
+    .copyrights p a, .diff p a {
         color: white;
-        padding: 5px;
-        font-size: 3em;
-        border-radius: 50%;
+        margin-left: 2px;
     }
 
-    .glyphicon-envelope {
-        background-color: black;
+    .copyrights p a:hover, .diff p a:hover {
         color: white;
-        padding: 5px;
-        font-size: 3em;
-        border-radius: 50%;
-    }
-
-    .carts .container h1 {
-        color: #fff;
-        font-size: 0.3rem;
-    }
-
-    .footer-logo a:before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 0;
-        width: 35%;
-        height: 1px;
-        background: transparent;
-    }
-
-    .footer-logo a:after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        right: 0;
-        width: 35%;
-        height: 1px;
-        background: transparent;
-    }
-}
-
-@media (min-width: 768px) {
-    .icon {
-        border: 5px solid black;
-        padding: 5px;
-        margin: 5px;
-        height: 250px;
-    }
-
-    .glyphicon-shopping-cart {
-        background-color: black;
-        color: white;
-        padding: 10px;
-        font-size: 4em;
-        border-radius: 60%;
-    }
-
-    .glyphicon-hourglass {
-        background-color: black;
-        color: white;
-        padding: 10px;
-        font-size: 4em;
-        border-radius: 60%;
-    }
-
-    .glyphicon-envelope {
-        background-color: black;
-        color: white;
-        padding: 10px;
-        font-size: 4em;
-        border-radius: 60%;
-    }
-
-    .carts .container h1 {
-        color: #fff;
-        font-size: 1rem;
-    }
-
-    .footer-logo a:before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 0;
-        width: 35%;
-        height: 1px;
-        background: transparent;
-    }
-
-    .footer-logo a:after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        right: 0;
-        width: 35%;
-        height: 1px;
-        background: transparent;
     }
 }

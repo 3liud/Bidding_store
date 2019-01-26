@@ -61,17 +61,13 @@
             <div class="content-section">
                 <h3>Sidebar</h3>
                 <p class='text-muted'>Highlights</p>
-                <ul class="list-group">
-                    {% for title in PostSell %}
-                        <li class="list-group-item list-group-item-light">{{ posts.title }}</li>
-                    {% endfor %}
-                </ul>
+                {% block content2 %}{% endblock %}
             </div>
         </div>
     </div>
 </main>
-<div class="footer-bottom text-center">
-    <div class="container-1">
+<div class="footer">
+    <div class="footer-bottom text-center">
         <div class="copyrights">
             <p> © 2019 Bid for your item. All Rights Reserved | Design by <a href="#"> Apeiron Analytics</a></p>
         </div>
