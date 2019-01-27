@@ -1,3 +1,17 @@
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    margin: 5px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
 
 body {
     background: #c0c0c0;
@@ -217,12 +231,13 @@ body {
         color: white;
         font-size: 14px;
     }
+
     .footer {
-    position: absolute;
-    bottom: 0;
-    height: 20px;
-    background: black;
-    width: 100%;
+        position: absolute;
+        bottom: 0;
+        height: 20px;
+        background: black;
+        width: 100%;
     }
 
     .footer-bottom {
@@ -249,4 +264,73 @@ body {
     .copyrights p a:hover, .diff p a:hover {
         color: white;
     }
+
+    .profilePicture .img-responsive:hover {
+        opacity: 0.2;
+    }
+
+    .profilePicture img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: auto;
+        margin-bottom: 0px;
+        width: 250px;
+        height: 250px;
+        max-width: 250px;
+        max-height: 250px;
+
+    }
+
+    .profilePicture .text {
+        position: relative;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0px;
+        text-align: center;
+        visibility: hidden;
+        width: 250px;
+        height: 30px;
+        font-family: "Maiandra GD";
+    }
+
+    .profilePicture:hover .text {
+        visibility: visible;
+    }
+
+    .profilePicture .img-responsive:hover {
+        opacity: 0.2;
+    }
+
+    .profilePicture img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: auto;
+        margin-bottom: 0px;
+        width: 250px;
+        height: 250px;
+        max-width: 250px;
+        max-height: 250px;
+
+    }
+
+    .profilePicture .text {
+        position: relative;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0px;
+        text-align: center;
+        visibility: hidden;
+        width: 250px;
+        height: 30px;
+        font-family: "Maiandra GD";
+    }
+
+    .profilePicture:hover .text {
+        visibility: visible;
+    }
 }
+

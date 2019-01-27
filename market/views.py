@@ -7,10 +7,10 @@ from market.models import Product, Seller, Bidder
 
 def save_bid(request):
 	context = dict()
-	context['product_list'] = Product.objects.get(id=request.POST.get('product_id'))
+	context['product-list'] = Product.objects.get(id=request.POST.get('product_id'))
 	context['seller'] = Seller.objects.get(product_id_id=request.POST.get('product_id'))
 	if request.method == 'POST':
-		if int(request.POST.get('minimum_price')) > int(request.POST.get('bid_amount')):
+		if int(request.POST.get('price')) > int(request.POST.get('bid_amount')):
 			context['error'] = "bid price should be more than minimum price"
 			return render(request, 'market/product_detail.html', context)
 		else:
@@ -30,3 +30,7 @@ def save_bid(request):
 				obj.save()
 			return HttpResponseRedirect(reverse('view-product'))
 	return render(request, 'market/product_detail.html', context)
+
+
+def index(request):
+	return render(request, 'market/index.html')

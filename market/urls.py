@@ -3,6 +3,7 @@ import market.views
 from . import classviews
 
 urlpatterns = [
+	path('home/', market.views.index, name='index'),
 	path('', classviews.ProductListView.as_view(), name='market-home'),
 	path('post/<int:pk>/', classviews.ProductDetailView.as_view(), name='product-detail'),
 	path('post/new/', classviews.ProductCreateView.as_view(), name='product-create'),

@@ -1,8 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.urls import reverse
 from .models import Product, Seller, Bidder
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.models import User
 from django.views.generic import (
 	ListView,
 	DetailView,
@@ -12,7 +11,7 @@ from django.views.generic import (
 )
 
 
-class ProductListView(ListView):
+class ProductListView(LoginRequiredMixin, ListView):
 	model = Product
 	template_name = 'market/home.html'
 	context_object_name = 'posts'
