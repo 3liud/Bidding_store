@@ -7,10 +7,12 @@
                     <!--<a class="mr-2" href="#"</a>-->
                     <p>{{ seller.user_name.id }}</p>
                     <small class="text-muted">{{ post.date_posted|date:"H:i:s; F d, Y" }}</small>
-                    <p>{{ post.category }} category </p>
+                    <p><hr></p>
                 </div>
                 <p class="title-item title-item">
                     <a class="article-title" href="{% url 'product-detail' post.id %}">{{ post.title }}</a>
+                    <hr>
+
                 </p>
                 <article class="media content-section">
                     <img class="sell-img sell-img" src="{{ post.image.url }}">
@@ -22,10 +24,11 @@
                         <p> The item will be live for bidding for:
                         <p><b>{{ post.live_time }} Minutes</b></p>
                         <hr style="border: 2px solid grey;"/>
-                        <p>seller's price:</p>
-                        <p><label class="btn btn-outline-info mr-3">Ksh. {{ post.price }}</label></p>
+                        <p>seller's price:
+                            <label class="btn btn-outline-info mr-3">Ksh. {{ post.price }}</label></p>
+                        <p></p> <a class="btn btn-dark mbr-3" href="{% url 'bidder-list' post.id %}">Check the Bidding table</a>
+                        </p>
                         <hr style="border: 2px solid grey;"/>
-                        <p><a class="btn btn-outline-info mb-5" href="{% url 'bidder-list' post.id %}">Bidding table</a></p>
                     </fieldset>
                 </article>
             </div>

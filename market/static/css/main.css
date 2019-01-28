@@ -14,13 +14,14 @@
 }
 
 body {
-    background: #c0c0c0;
+    background: #b2cdcc;
     color: #333333;
-    margin: 0 0 20px;
+    padding: 25%;
+    margin: 20px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    color: #444444;
+h1, h2, h3, h4, h5, h6, hr {
+    color: black;
 }
 
 .section_left {
@@ -33,7 +34,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .body_holder {
     margin: 5rem .5rem .25rem;
-    padding: 0.5rem;
+    padding: 1rem 5rem 0.25rem;
 }
 
 ul {
@@ -41,7 +42,7 @@ ul {
 }
 
 .bg-steel {
-    background-color: #002580;
+    background-color:  #581593 ;
 }
 
 .site-header .navbar-nav .nav-link {
@@ -57,18 +58,18 @@ ul {
 }
 
 .content-section {
-    background: #cbd5db;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-bottom: 0%;
-    border: 1px solid #dddddd;
-    border-radius: 3px;
-    margin-bottom: 20px;
+    background: #E6E6FA;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+    border: 1px solid transparent;
+    border-radius: 2%;
+    margin-bottom: 2%;
 }
 
 .container {
     box-shadow: 2px 2px 2px dimgrey;
-    padding-bottom: 1rem;
+    padding-bottom: 1%;
 }
 
 .container-1 {
@@ -76,9 +77,10 @@ ul {
 }
 
 .title-item {
+    padding: 1%;
     color: #1d1c9d;
     font-style: normal;
-    font-size: 30px;
+    font-size: 90%;
     font-weight: bolder;
     text-transform: capitalize;
 }
@@ -105,15 +107,15 @@ a.article-title:hover {
 }
 
 .article-img {
-    height: 65px;
-    width: 65px;
-    margin-right: 12px;
+    height: 65%;
+    width: 65%;
+    margin-right: 12%;
 }
 
 .sell-img {
     height: 12cm;
     width: 10cm;
-    margin-right: 16px;
+    margin-right: 5px;
     padding: 0.5rem;
 }
 
@@ -159,26 +161,6 @@ a.article-title:hover {
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
-
-/* Float four columns side by side */
-.column {
-    float: left;
-    width: 45%;
-    padding: 0 10px;
-}
-
-/* Remove extra left and right margins, due to padding in columns */
-.row {
-    margin: 0 -5px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
 /* Style the counter cards */
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
