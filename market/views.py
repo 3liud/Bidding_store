@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from market.models import Product, Seller, Bidder
+from market.models import Product, Bidder
 
 
 def save_bid(request):

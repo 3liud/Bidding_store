@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.contrib.auth.models import User
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
-from .models import Product, Seller, Bidder
+from .models import Product, Bidder
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
 	ListView,
@@ -16,7 +17,7 @@ class ProductListView(LoginRequiredMixin, ListView):
 	template_name = 'market/home.html'
 	context_object_name = 'posts'
 	ordering = ['-date_posted']
-	paginate_by = 5
+	paginate_by = 3
 
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
@@ -24,8 +25,7 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
 	fields = ['title', 'image', 'description', 'category', 'price', 'sell_on', 'live_time']
 	
 	def form_valid(self, form):
-		obj = Seller(user_name=self.request.user, product_id=form.save())
-		obj.save()
+		form.instance.seller = self.request.user
 		return super().form_valid(form)
 	
 	def get_success_url(self):
@@ -34,22 +34,15 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
 
 class ProductDetailView(DetailView):
 	model = Product
-	context_object_name = 'product-list'
 	
-	def get_context_data(self, **kwargs):
-		context = super(ProductDetailView, self).get_context_data(**kwargs)
-		x = Seller.objects.all()
-		context['Seller'] = Seller.objects.get(product_id_id=self.kwargs['pk'])
-		return context
 
-
-def get_success_url():
-	return reverse('market-home')
+'''def get_success_url():
+	return reverse('market-home')'''
 
 
 class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-	model = Seller
-	fields = ['title', 'description']
+	model = Product
+	fields = ['image', 'description', 'price', 'sell_on', 'live_time']
 	
 	def form_valid(self, form):
 		form.instance.seller = self.request.user
@@ -57,25 +50,20 @@ class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	
 	def test_func(self):
 		post = self.get_object()
-		if self.request.user == post.author:
+		if self.request.user == post.seller:
 			return True
 		return False
 
 
 class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-	def test_func(self):
-		pass
-	
 	model = Product
 	success_url = '/'
 	
-	def get_context_data(self, **kwargs):
-		context = super(ProductDeleteView, self).get_context_data(**kwargs)
-		context["product_id"] = self.kwargs['pk']
-		return context
-	
-	def get_success_url(self):
-		return reverse('view-product')
+	def test_func(self):
+		post = self.get_object()
+		if self.request.user == post.seller:
+			return True
+		return False
 	
 
 class BidderListView(ListView):
@@ -94,14 +82,12 @@ def about(request):
 	return render(request, 'market/about.html', {'title': 'About'})
 
 
-'''
 class UserProductListView(ListView):
-	model = Seller
+	model = Product
 	template_name = 'market/user_product.html'  # <app>/<model>_<viewtype>.html
-	context_object_name = 'user-post'
+	context_object_name = 'user_post'
 	paginate_by = 5
 
 	def get_queryset(self):
 		user = get_object_or_404(User, seller=self.kwargs.get('username'))
 		return Product.objects.filter(seller=user).order_by('-date_posted')
-'''

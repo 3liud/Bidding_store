@@ -38,19 +38,10 @@ class Product(models.Model):
 	live_time = models.CharField("How long should your item stay in the auction table?", max_length=20, default='5',
 	                             choices=BID_TIME
 	                             )
+	seller = models.ForeignKey(User, on_delete=models.CASCADE, default='2')
 	
 	def get_absolute_url(self):
-		return reverse('postsell-detail', kwargs={'pk': self.pk})
-
-
-class Seller(models.Model):
-	created = models.DateTimeField(auto_now_add=True)
-	updated = models.DateTimeField(auto_now=True)
-	user_name = models.ForeignKey(User, on_delete=models.CASCADE)
-	product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-	
-	def _unicode_(self):
-		return str(self.user_name)
+		return reverse('product-detail', kwargs={'pk': self.pk})
 
 
 class Bidder(models.Model):

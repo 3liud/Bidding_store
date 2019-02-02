@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Product, Seller, Bidder
+from .models import Product, Bidder
 
 admin.site.register(Product)
-admin.site.register(Seller)
+#admin.site.register(Seller)
 admin.site.register(Bidder)
 
 
