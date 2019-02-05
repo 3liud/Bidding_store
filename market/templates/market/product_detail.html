@@ -5,7 +5,7 @@
         <div class="media-body">
             <div class="article-metadata">
                 <!--<a class="mr-2" href="#"</a>-->
-                {% if object.seller == user%}
+                {% if object.seller == user %}
                     <div>
                         <a class="btn btn-secondary btn-sm mt-1 mb-1"
                            href="{% url 'product-update' object.id %}">Update</a>
@@ -32,26 +32,21 @@
                     <p>seller's price:</p>
                     <p>
                         <label class="btn btn-outline-info mr-3">Ksh. {{ object.price }}</label>
+                    {% if object.seller != user %}
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="bid_amount" name="bid_amount"
+                                           placeholder="Enter your bid amount:" required><br>
+                                    <input type="hidden" value='{{ product_list.price }}' name="minimum_price"
+                                           id="minimum_price">
+                                    <input type="hidden" value='{{ product_list.id }}' name="product_id"
+                                           id="product_id">
+                                    <button class="btn btn-lg btn-block" type="submit">Bid</button>
+                                </div>
+                            </form>
+                        {% endif %}
                     </p>
-
-                    {% if product.seller == user %}
-                        <div class="error">
-                            {% if error %}
-                                {{ error }}
-                            {% endif %}
-                        </div>
-                        <form method="POST">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="bid_amount" name="bid_amount"
-                                       placeholder="Enter your bid amount:" required><br>
-                                <input type="hidden" value='{{ product_list.price }}' name="minimum_price"
-                                       id="minimum_price">
-                                <input type="hidden" value='{{ product_list.id }}' name="product_id" id="product_id">
-                                <button class="btn btn-lg btn-block" type="submit">Bid</button>
-                            </div>
-                        </form>
-                    {% endif %}
                 </fieldset>
             </article>
         </div>

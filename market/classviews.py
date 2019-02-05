@@ -17,7 +17,7 @@ class ProductListView(LoginRequiredMixin, ListView):
 	template_name = 'market/home.html'
 	context_object_name = 'posts'
 	ordering = ['-date_posted']
-	paginate_by = 3
+	paginate_by = 8
 
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
@@ -34,10 +34,13 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
 
 class ProductDetailView(DetailView):
 	model = Product
+	context_object_name = 'product_list'
 	
-
-'''def get_success_url():
-	return reverse('market-home')'''
+	def get_context_data(self, **kwargs):
+		context = super(ProductDetailView, self).get_context_data(**kwargs)
+		x = Product.objects.all()
+		context["seller"] = Product.objects.get(id=self.kwargs['pk'])
+		return context
 
 
 class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -64,14 +67,14 @@ class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		if self.request.user == post.seller:
 			return True
 		return False
-	
+
 
 class BidderListView(ListView):
 	model = Bidder
 	
 	def get_queryset(self):
-		return Bidder.objects.filter(product_id=self.kwargs['pk'])
-	
+		return Bidder.objects.filter(product_id=self.kwargs['pk']).order_by('-created')
+		
 	def get_context_data(self, **kwargs):
 		context = super(BidderListView, self).get_context_data(**kwargs)
 		context["product_id"] = self.kwargs['pk']
@@ -85,9 +88,9 @@ def about(request):
 class UserProductListView(ListView):
 	model = Product
 	template_name = 'market/user_product.html'  # <app>/<model>_<viewtype>.html
-	context_object_name = 'user_post'
+	context_object_name = 'user_posts'
 	paginate_by = 5
-
+	
 	def get_queryset(self):
 		user = get_object_or_404(User, seller=self.kwargs.get('username'))
 		return Product.objects.filter(seller=user).order_by('-date_posted')

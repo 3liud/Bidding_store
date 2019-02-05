@@ -1,0 +1,402 @@
+.site-header .navbar-nav .nav-link {
+    color: #cbd5db;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+    color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+}
+
+.site-header .navbar-nav .nav-link {
+    color: #cbd5db;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+    color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+}
+.bg-steel {
+    background-color: black;
+    background-image: linear-gradient(to bottom left, #f0610a, black, orangered);
+    font-weight: bolder;
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+}
+
+.main-banner {
+    background: url('/media/backgrounds/black (5).jpg') no-repeat 0px 0px;
+    background-size: cover;
+    min-height: 400px;
+    padding: 100px 0 0 0;
+}
+
+.banner h1 {
+    color: #fff;
+    font-size: 45px;
+}
+
+.banner p {
+    color: #fff;
+    margin: 10px 0 30px 0;
+    font-size: 18px;
+}
+
+.grid .item {
+    padding: 50px;
+}
+
+.carts .container h1 {
+    color: #fff;
+    font-size: 45px;
+}
+
+.icon {
+    border: 5px solid black;
+    padding: 30px;
+    margin: 30px;
+    height: 400px;
+}
+
+.glyphicon-shopping-cart {
+    background-color: black;
+    color: white;
+    padding: 60px;
+    font-size: 6em;
+    border-radius: 50%;
+}
+
+.glyphicon-hourglass {
+    background-color: black;
+    color: white;
+    padding: 60px;
+    font-size: 6em;
+    border-radius: 50%;
+}
+
+.glyphicon-envelope {
+    background-color: black;
+    color: white;
+    padding: 60px;
+    font-size: 6em;
+    border-radius: 50%;
+}
+
+
+h4 {
+    padding: 20px;
+    color: black;
+}
+
+.footer-bottom p {
+    margin: 20px 0 0 0;
+    color: white;
+    font-size: 14px;
+}
+
+.footer-bottom {
+    background: linear-gradient(to bottom left, #f0610a, black, orangered);
+    padding: 30px 0;
+}
+
+.copyrights p, .diff p {
+    color: white;
+    font-size: 14px;
+    margin-top: 0;
+}
+
+.copyrights p a, .diff p a {
+    color: white;
+    margin-left: 2px;
+}
+
+.copyrights p a:hover, .diff p a:hover {
+    color: white;
+}
+
+.footer-social-icons ul li {
+    display: inline-block;
+    margin: 0 0.2em;
+}
+
+.footer-social-icons ul li a {
+    width: 30px;
+    height: 30px;
+    background: url('/media/backgrounds/black (5).jpg') no-repeat 0px 0px;
+    display: inline-block;
+    position: relative;
+}
+
+.footer-social-icons ul li a span {
+    color: black;
+    position: absolute;
+    bottom: 0;
+    left: -25px;
+    right: -25px;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 2px;
+    background: white;
+    visibility: hidden;
+    opacity: 0;
+    -o-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -webkit-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -moz-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.footer-social-icons ul li a span:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid white;
+    position: absolute;
+    bottom: -5px;
+    left: 34px;
+}
+
+.footer-social-icons ul li a:hover span {
+    bottom: 41px;
+    visibility: visible;
+    opacity: 1;
+}
+
+.footer-social-icons ul li a.facebook {
+    background-position: 0px 0px;
+}
+
+.footer-social-icons ul li a.facebook:hover {
+    background-position: -0px -30px;
+}
+
+.footer-social-icons ul li a.twitter {
+    background-position: -30px 0px;
+}
+
+.footer-social-icons ul li a.twitter:hover {
+    background-position: -30px -30px;
+}
+
+.footer-social-icons ul li a.flickr {
+    background-position: -60px 0px;
+}
+
+.footer-social-icons ul li a.flickr:hover {
+    background-position: -60px -30px;
+}
+
+.footer-social-icons ul li a.googleplus {
+    background-position: -90px 0px;
+}
+
+.footer-social-icons ul li a.googleplus:hover {
+    background-position: -90px -30px;
+}
+
+.footer-social-icons ul li a.dribbble {
+    background-position: -120px 0px;
+}
+
+.footer-social-icons ul li a.dribbble:hover {
+    background-position: -120px -30px;
+}
+
+.footer-social-icons {
+    margin: 40px 0 15px 0;
+}
+
+.footer-logo a {
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 40px;
+    color: white;
+    text-decoration: none;
+}
+
+.footer-logo a span {
+    color: white;
+}
+
+.footer-logo a {
+    position: relative;
+    display: block;
+}
+
+.footer-logo a:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 35%;
+    height: 1px;
+    background: white;
+}
+
+.footer-logo a:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 35%;
+    height: 1px;
+    background: white;
+}
+
+@media (max-width: 767px) {
+    .icon {
+        border: 5px solid black;
+        padding: 1px;
+        margin: 1px;
+        height: 210px;
+        width: 150px;
+    }
+
+    .glyphicon-shopping-cart {
+        background-color: black;
+        color: white;
+        padding: 5px;
+        font-size: 3em;
+        border-radius: 50%;
+    }
+
+    .glyphicon-hourglass {
+        background-color: black;
+        color: white;
+        padding: 5px;
+        font-size: 3em;
+        border-radius: 50%;
+    }
+
+    .glyphicon-envelope {
+        background-color: black;
+        color: white;
+        padding: 5px;
+        font-size: 3em;
+        border-radius: 50%;
+    }
+
+    .carts .container h1 {
+        color: #fff;
+        font-size: 0.3rem;
+    }
+
+    .footer-logo a:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 35%;
+        height: 1px;
+        background: transparent;
+    }
+
+    .footer-logo a:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 35%;
+        height: 1px;
+        background: transparent;
+    }
+}
+
+@media (min-width: 768px) {
+    .icon {
+        border: 5px solid black;
+        padding: 5px;
+        margin: 5px;
+        height: 250px;
+    }
+
+    .glyphicon-shopping-cart {
+        background-color: black;
+        color: white;
+        padding: 10px;
+        font-size: 4em;
+        border-radius: 60%;
+    }
+
+    .glyphicon-hourglass {
+        background-color: black;
+        color: white;
+        padding: 10px;
+        font-size: 4em;
+        border-radius: 60%;
+    }
+
+    .glyphicon-envelope {
+        background-color: black;
+        color: white;
+        padding: 10px;
+        font-size: 4em;
+        border-radius: 60%;
+    }
+
+    .carts .container h1 {
+        color: #fff;
+        font-size: 1rem;
+    }
+
+    .footer-logo a:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 35%;
+        height: 1px;
+        background: transparent;
+    }
+
+    .footer-logo a:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 35%;
+        height: 1px;
+        background: transparent;
+    }
+}
+
+@media (min-width: 1200px) {
+    .carts .container h1 {
+        color: #fff;
+        font-size: 45px;
+    }
+
+    .icon {
+        border: 5px solid black;
+        padding: 30px;
+        margin: 30px;
+        height: 400px;
+    }
+
+    .glyphicon-shopping-cart {
+        background-color: black;
+        color: white;
+        padding: 60px;
+        font-size: 6em;
+        border-radius: 50%;
+    }
+
+    .glyphicon-hourglass {
+        background-color: black;
+        color: white;
+        padding: 60px;
+        font-size: 6em;
+        border-radius: 50%;
+    }
+
+    .glyphicon-envelope {
+        background-color: black;
+        color: white;
+        padding: 60px;
+        font-size: 6em;
+        border-radius: 50%;
+    }}

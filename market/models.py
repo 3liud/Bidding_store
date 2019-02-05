@@ -6,7 +6,7 @@ from django.urls import reverse
 
 
 class Product(models.Model):
-	title = models.CharField("Input the title of the Item you are selling", max_length=100)
+	title = models.CharField("Input the title of the Item you are selling", max_length=30)
 	description = models.TextField("Input some description of the item", null=False, default='')
 	image = models.ImageField("Let the buyer see what you are selling, upload a picture",
 	                          null=False, default='', upload_to='commodity_pics')
