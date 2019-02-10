@@ -2,7 +2,6 @@
 {% block content %}
     {% for post in object_list %}
        <article>
-
     <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
         <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
             <h3 class="mb-4 text-2xl">{{ post.title }}</h3>
@@ -20,14 +19,11 @@
     </div>
 </article>
     {% endfor %}
-
-
     {% if is_paginated %}
         {% if page_obj.has_previous %}
             <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
             <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
         {% endif %}
-
         {% for num in page_obj.paginator.page_range %}
             {% if page_obj.number == num %}
                 <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
