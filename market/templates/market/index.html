@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>PickTheProduct</title>
+    <title>AuctionIt</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static '/market/../../static/css/index_style.css' %}">
@@ -13,6 +13,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/auction_system/static/images/favicon-16x16.png">
 </head>
 <body>
+<header class="site-header">
 <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
             <a class="navbar-brand mr-4" href="{% url 'market-home' %}">AuctionIt</a>
@@ -36,6 +37,7 @@
             </div>
         </div>
     </nav>
+</header>
 <div class="main-banner banner text-center">
     <div class="container">
         <h1>Auction & Bid on relics and other items anytime, anywhere with <b>AuctionIt</b></h1>

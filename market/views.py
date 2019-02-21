@@ -36,5 +36,3 @@ def index(request):
 	return render(request, 'market/index.html')
 
 
-def home2(request):
-	return render(request,'market/home2.html')

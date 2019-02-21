@@ -5,7 +5,6 @@ from . import classviews
 urlpatterns = [
 	path('', market.views.index, name='index'),
 	path('home/', classviews.ProductListView.as_view(), name='market-home'),
-	path('home2/', market.views.home2, name='home2'),
 	path('post/<int:pk>/', classviews.ProductDetailView.as_view(), name='product-detail'),
 	path('post/new/', classviews.ProductCreateView.as_view(), name='product-create'),
 	path('post/viewproduct/', classviews.ProductListView.as_view(), name='view-product'),
