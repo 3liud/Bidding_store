@@ -20,7 +20,7 @@ body {
 }
 
 body {
-    background: linear-gradient(to top right, #273746, #566573, white, #566573, #273746);
+    background: #FFFFFF;
 }
 
 h1, h2, h3, h4, h5, h6, hr {
@@ -134,7 +134,7 @@ ul {
 }
 
 .section-aside {
-    background-image: radial-gradient(dimgray, white, darkslateblue);
+    background: #FFFFFF;
     position: fixed;
     color: black;
     align-content: center;

@@ -33,9 +33,9 @@
                     <p>
                         <label class="btn btn-outline-info mr-3">Ksh. {{ object.price }}</label>
                     {% if object.seller != user %}
-                            <form method="POST">
-                                {% csrf_token %}
-                                <div class="form-group">
+                      <form class="" action="{% url 'create-bid' %}" method="post">
+                            {% csrf_token %}
+                               <div class="form-group">
                                     <input type="text" class="form-control" id="bid_amount" name="bid_amount"
                                            placeholder="Enter your bid amount:" required><br>
                                     <input type="hidden" value='{{ product_list.price }}' name="minimum_price"
@@ -44,11 +44,19 @@
                                            id="product_id">
                                     <button class="btn btn-lg btn-block" type="submit">Bid</button>
                                 </div>
-                            </form>
+                              </form>
+                             <p>{{ product_list.id }}</p>
                         {% endif %}
                     </p>
                 </fieldset>
             </article>
+        <div>
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
         </div>
     </article>
 {% endblock content %}

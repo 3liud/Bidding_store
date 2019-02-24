@@ -11,10 +11,10 @@ class Product(models.Model):
 	image = models.ImageField("Let the buyer see what you are selling, upload a picture",
 	                          null=False, default='', upload_to='commodity_pics')
 	date_posted = models.DateTimeField(default=timezone.now)
-	
+
 	def __str__(self):
 		return self.title
-	
+
 	CATEGORY = (
 		('General', 'General'),
 		('Painting', 'Painting'),
@@ -23,8 +23,7 @@ class Product(models.Model):
 		('Instrument', 'Instrument'),
 	)
 	category = models.CharField("Choose product category", max_length=100, default='Gen', choices=CATEGORY)
-	price = models.DecimalField("What is the least price you are selling your item for?", max_digits=10,
-	                            decimal_places=2, default='100')
+	price = models.IntegerField("What is the least price you are selling your item for?")
 	sell_on = models.DateTimeField("When do you want your item to go live for Auction?",
 	                               default=timezone.now
 	                               )
@@ -39,19 +38,23 @@ class Product(models.Model):
 	                             choices=BID_TIME
 	                             )
 	seller = models.ForeignKey(User, on_delete=models.CASCADE, default='2')
-	
+
 	def get_absolute_url(self):
 		return reverse('product-detail', kwargs={'pk': self.pk})
 
 
 class Bidder(models.Model):
 	numeric = RegexValidator(r'^[0-9]*$', 'Only numeric are allowed.')
-	
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
 	user_name = models.ForeignKey(User, on_delete=models.CASCADE)
 	product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
 	bid_amount = models.CharField(max_length=255, validators=[numeric])
-	
+
 	def _unicode_(self):
 		return str(self.user_name)
+
+
+class Bid(models.Model):
+	user = models.OneToOneField(User, null=False, on_delete=models.CASCADE)
+	bid_price = models.IntegerField()

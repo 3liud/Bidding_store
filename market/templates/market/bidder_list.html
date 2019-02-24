@@ -6,7 +6,7 @@
 {% endblock %}
 {% block content %}
     {% if bidder_list %}
-        <a class="article-title" >Bid and BidList for {{ post.product_id.title }}</a><a/>
+        <a class="article-title" >Bid and BidList for {{ post.product_id.title }}</a><br>
         <table class="table table-hover table-striped">
             <thead>
             <tr bgcolor="#5f9ea0">
@@ -19,8 +19,23 @@
             {% for bid in bidder_list %}
                 <tr>
                     <td>{{ bid.user_name }}</td>
-                    <td>{{ bid.bid_amount }}</td>
+                    <td>Ksh. {{ bid.bid_amount }}</td>
                     <td>{{ bid.created }}</td>
+                {% if request.bidder == user %}
+                    <td>  <form class="" action="{% url 'create-bid' %}" method="post">
+                            {% csrf_token %}
+                               <div class="form-group">
+                                    <input type="text" class="form-control" id="bid_amount" name="bid_amount"
+                                           placeholder="Enter your bid amount:" required><br>
+                                    <input type="hidden" value='{{ product_list.price }}' name="minimum_price"
+                                           id="minimum_price">
+                                    <input type="hidden" value='{{ product_list.id }}' name="product_id"
+                                           id="product_id">
+                                    <button class="btn btn-lg btn-block" type="submit">update bid</button>
+                                </div>
+                              </form>
+                    </td>
+                {% endif %}
                 </tr>
             {% endfor %}
             </tbody>
