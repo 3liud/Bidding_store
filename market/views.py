@@ -9,14 +9,6 @@ from django.urls import reverse
 from market.models import Product, Bidder
 
 
-'''@login_required
-def bid_create(request):
-	if request.method == 'POST':
-		if int(request.POST.get('price')) > int(request.POST.get('bid_amount')):
-			messages.ERROR(request, f'Your bid should be greater than the current bid')
-'''
-
-
 def bid_create(request):
 
 	if request.method == 'POST':

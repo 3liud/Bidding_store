@@ -17,7 +17,15 @@ class ProductListView(LoginRequiredMixin, ListView):
 	template_name = 'market/home.html'
 	context_object_name = 'posts'
 	ordering = ['-date_posted']
-	paginate_by = 8
+	paginate_by = 6
+	
+
+class ProductListView2(LoginRequiredMixin, ListView):
+	model = Product
+	template_name = 'market/trialhome.html'
+	context_object_name = 'posts'
+	ordering = ['-date_posted']
+	paginate_by = 6
 
 
 class ProductCreateView(LoginRequiredMixin, CreateView):

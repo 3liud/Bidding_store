@@ -13,4 +13,5 @@ urlpatterns = [
 	path('post/<int:pk>/delete/', classviews.ProductDeleteView.as_view(), name='product-delete'),
 	path('post/<int:pk>/update/', classviews.ProductUpdateView.as_view(), name='product-update'),
 	path('user/<user_name>/', classviews.UserProductListView.as_view(), name='user_posts'),
+	path('trial/', classviews.ProductListView2.as_view(), name='market-trialhome'),
 ]
