@@ -35,10 +35,12 @@ h1, h2, h3, h4, h5, h6, hr {
     -moz-column-gap: 2em;
     column-gap: 2em;
 }
-.footer{
+
+.footer {
     background-image: linear-gradient(orangered, black);
 
 }
+
 .hold {
     padding: 2rem;
     background: red;
@@ -68,6 +70,11 @@ ul {
     display: block;
 }
 
+.panel-footer {
+    text-transform: capitalize;
+    font-weight: bolder;
+}
+
 .clock {
     vertical-align: middle;
     font-family: Orbitron;
@@ -91,23 +98,33 @@ ul {
     font-weight: bolder;
     font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
 }
- /* Remove the jumbotron's default bottom margin */
-        .jumbotron {
-            margin-bottom: 0;
-            background-color: black;
-         background-image: linear-gradient(to bottom left, #f0610a, black, orangered);
-         font-weight: bolder;
-        font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-        }
+
+/* Remove the jumbotron's default bottom margin */
+.jumbotron {
+    margin-bottom: 0;
+    background-color: black;
+    background-image: linear-gradient(to bottom left, #b9ff13, orangered);
+    font-weight: bolder;
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+}
+
+a {
+    color: black;
+    font-size: larger;
+    text-transform: capitalize;
+    text-anchor: middle;
+}
 
 .site-header .navbar-nav .nav-link {
     color: #cbd5db;
 }
- /* Remove the navbar's default rounded borders and increase the bottom margin */
-        .navbar {
-            margin-bottom: 50px;
-            border-radius: 0;
-        }
+
+/* Remove the navbar's default rounded borders and increase the bottom margin */
+.navbar {
+    margin-bottom: 50px;
+    border-radius: 0;
+}
+
 .site-header .navbar-nav .nav-link:hover {
     color: #ffffff;
 }
@@ -157,26 +174,33 @@ ul {
 }
 
 .content-section {
-    background: #abb2b9;
-    opacity: .1%;
-    box-shadow: 4px 4px 2px black;
-    padding-left: 2%;
+position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: black;
-    padding-right: 2%;
-    padding-bottom: 2%;
-    border: 1px solid black;
-    border-radius: 2%;
-    margin-bottom: 2%;
+    background: deepskyblue;
+    margin: 2rem;
+    padding: 2rem;
+}
+.content-detail {
+    color: black;
+    background: deepskyblue;
+    text-transform: inherit;
+    font-size: larger;
 }
 
 .container {
     box-shadow: 2px 2px 2px dimgrey;
-    padding-bottom: 1%;
+    padding: 3%;
+    background: deepskyblue;
+    width: 50%;
 }
 
 .container-1 {
     color: #428bca;
 }
+
 .tt {
     color: #333333;
     text-align: center;
@@ -325,7 +349,6 @@ p {
     }
 
 
-
     .copyrights p, .diff p {
         color: white;
         font-size: 14px;
@@ -333,7 +356,7 @@ p {
     }
 
     .copyrights p a, .diff p a {
-        color: white;
+        color: black;
         margin-left: 2px;
     }
 

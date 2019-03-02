@@ -1,4 +1,79 @@
-{% extends "market/base.html" %}
-{% block content %}
-	<h1> About page</h1>
-{% endblock content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" xmlns:color="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>AuctionIt</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static '/market/../../static/css/index_style.css' %}">
+    <link rel="stylesheet" type="text/css" href="/market/static/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="icon" type="image/png" sizes="16x16" href="/auction_system/static/images/favicon-16x16.png">
+</head>
+<body>
+<nav class="navbar navbar-inverse fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header ">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'market-home' %}">AuctionIt</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{% url 'market-home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'product-create' %}">Sell</a></li>
+                    <li><a href="#">Ticket shop</a></li>
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url  'about' %}">Contact</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        {% else %}
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Register</a></li>
+                    </ul>
+                {% endif %}
+        </div>
+    </div>
+</nav>
+<div class="carts container">
+    <h1 align="center">Features</h1>
+    <div class="col-md-4 col-xs-12 text-center">
+        <div class="icon">
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            <h4><b>Select the items from the list. Bid against both time and others</b></h4>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-4 text-center">
+        <div class="icon">
+            <span class="glyphicon glyphicon-hourglass"></span>
+            <h4><b>Every item has got its own time limit. Once the time limit has been reached, bidding is closed</b>
+            </h4>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-4 text-center">
+        <div class="icon">
+            <span class="glyphicon glyphicon-envelope"></span>
+            <h4><b>The bidder with highest bidding amount is notified and also the seller</b></h4>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<br>
+<hr>
+<br>
+<br><br>
+<footer class="container-fluid text-center" style="background: orangered;">
+    <p> © 2019 AUCTIONIT. All Rights Reserved | Design by <a href="#"> Apeiron Analytics</a></p>
+</footer>
+</body>
+</html>

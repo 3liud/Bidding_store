@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-     <link rel="stylesheet" type="text/css" href="{% static '/market/../../static/css/main.css' %}">
-        <link rel="stylesheet" type="text/css" href="/market/static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="{% static '/market/../../static/css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="/market/static/css/main.css">
 
 </head>
 <body onload="startTime()">
@@ -41,7 +41,7 @@
                     <li><a href="{% url 'product-create' %}">Sell</a></li>
                     <li><a href="#">Ticket shop</a></li>
                     <li><a href="{% url 'profile' %}">Profile</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="{% url 'about' %}">Contact</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -63,23 +63,27 @@
                     {#    <div class="row">#}
                     <div class="col-sm-4">
                         <div class="panel panel-primary">
-                            <div class="panel-heading">{{ post.title }}</div>
-                            <div class="panel-body "><img src="{{ post.image.url }}" class="sell-img img-responsive"
-                                                          style="width:100%" alt="Image"></div>
-                            <div class="panel-footer">more details?</div>
+                            <div class="panel-heading">
+                                <a href="{% url 'product-detail' post.id %}">
+                                    {{ post.title }}</a>
+                            </div>
+                            <div class="panel-body "><a href="{% url 'product-detail' post.id %}">
+                                <img src="{{ post.image.url }}"
+                                     class="sell-img img-responsive" style="width:100%" alt="Image"> </a>
+                                <div class="panel-footer">going live on: {{ post.sell_on|date:"F d, H:i" }}</div>
+                                <div class="panel-footer">
+                                    <a class="btn btn-dark mbr-3" href="{% url 'bidder_list' post.id %}">
+                                        <b> check current bids </b> </a></div>
+                            </div>
                         </div>
                     </div>
-                </div>
             </article>
 
-            {#</div>#}
-            {#</div>#}
         {% endfor %}
     {% endblock content %}
 </div>
-<br>
-<br><br>
-<div style="color: black;">
+<span></span>
+<div class="container-fluid" style="color: black; align-items: center;">
     {% if is_paginated %}
         {% if page_obj.has_previous %}
             <a class="btn btn-outline-info mb-5" href="?page=1">First</a>
@@ -98,6 +102,9 @@
         {% endif %}
     {% endif %}
 </div>
+<br>
+<hr>
+<br>
 <footer class="container-fluid text-center" style="background: orangered;">
     <p> © 2019 AUCTIONIT. All Rights Reserved | Design by <a href="#"> Apeiron Analytics</a></p>
 </footer>

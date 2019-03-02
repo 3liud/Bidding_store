@@ -39,5 +39,3 @@ def bid_create(request):
 	return render(request, 'market/bidder_list.html', context)
 
 
-def index(request):
-	return render(request, 'market/index.html')

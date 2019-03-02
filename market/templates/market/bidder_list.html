@@ -1,52 +1,11 @@
+{% extends 'market/navigation_part.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>AuctionIt</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static '/market/../../static/css/main.css' %}">
-    <link rel="stylesheet" type="text/css" href="/market/static/css/main.css">
-</head>
-<body onload="startTime()">
-<nav class="navbar navbar-inverse fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header ">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'market-home' %}">AuctionIt</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="{% url 'market-home' %}">Home</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'product-create' %}">Sell</a></li>
-                    <li><a href="#">Ticket shop</a></li>
-                    <li><a href="{% url 'profile' %}">Profile</a></li>
-                    <li><a href="#">Contact</a></li>
-                    </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
-                        {% else %}
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Register</a></li>
-                    </ul>
-                {% endif %}
-        </div>
-    </div>
-</nav>
 {% block content %}
+    <hr>
+    <div class="media container">
     {% if bidder_list %}
-        <a class="article-title" >Bid and BidList for {{ post.product_id.title }}</a><br>
+        <a class="article-title" >Bid and BidList for {{ object.title }}</a><br>
         <table class="table table-hover table-striped">
             <thead>
             <tr bgcolor="#5f9ea0">
@@ -83,4 +42,7 @@
     {% else %}
         <h2 style="text-align: center; color: black">No bids!!</h2>
     {% endif %}
+    </div>
+    <br>
+    <br><br> <br><br>  <br><br><br><br> <br><br> <br><br> <br><br> <br><br>
 {% endblock %}
