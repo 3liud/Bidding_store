@@ -15,7 +15,7 @@
 <body onload="startTime()">
 
 <div class="jumbotron">
-    <div class="container text-center">
+    <div class=" text-center">
         <h1>AuctionIt</h1>
         <p>come, buy, live</p>
         <h3>
@@ -39,7 +39,7 @@
                 <li class="active"><a href="{% url 'market-home' %}">Home</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'product-create' %}">Sell</a></li>
-                    <li><a href="#">Ticket shop</a></li>
+
                     <li><a href="{% url 'profile' %}">Profile</a></li>
                     <li><a href="{% url 'about' %}">Contact</a></li>
                     </ul>
@@ -63,9 +63,9 @@
                     {#    <div class="row">#}
                     <div class="col-sm-4">
                         <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <a href="{% url 'product-detail' post.id %}">
-                                    {{ post.title }}</a>
+                             <div class="panel-heading">
+                                <a class="btn" href="{% url 'product-detail' post.id %}">
+                                    {{ post.title }}, {{ post.category }} sold by {{ post.seller }} </a>
                             </div>
                             <div class="panel-body "><a href="{% url 'product-detail' post.id %}">
                                 <img src="{{ post.image.url }}"
@@ -82,8 +82,8 @@
         {% endfor %}
     {% endblock content %}
 </div>
-<span></span>
-<div class="container-fluid" style="color: black; align-items: center;">
+<hr>
+<div class="container-fluid" >
     {% if is_paginated %}
         {% if page_obj.has_previous %}
             <a class="btn btn-outline-info mb-5" href="?page=1">First</a>
@@ -104,7 +104,6 @@
 </div>
 <br>
 <hr>
-<br>
 <footer class="container-fluid text-center" style="background: orangered;">
     <p> © 2019 AUCTIONIT. All Rights Reserved | Design by <a href="#"> Apeiron Analytics</a></p>
 </footer>
@@ -145,5 +144,4 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous">
 </script>
-</html>
 </html>

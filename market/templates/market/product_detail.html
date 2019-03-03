@@ -3,143 +3,133 @@
 {% block content %}
     {% load crispy_forms_tags %}
 
-    <div>
-        <article>
-            <div class=" w-full sm:w-1/1 md:w-1/2 flex flex-col p-1">
-                <div class="content-detail content-detail">
-                    <div class="article-metadata">
-                        {% if object.seller == user %}
-                            <div>
-                                <a class="btn btn-secondary btn-sm mt-1 mb-1"
-                                   href="{% url 'product-update' object.id %}">Update</a>
-                                <a class="btn btn-danger btn-sm mt-1 mb-1"
-                                   href="{% url 'product-delete' object.id %}">Delete</a>
-                            </div>
-                        {% endif %}
-                        <div class="col-sm-4">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <a href="#">
-                                        {{ post.title }}</a>
-                                </div>
-                                <div class="panel-body "><a href="#">
-                                    <img src="{{ object.image.url }}"
-                                         class="sell-img img-responsive" style="width:100%" alt="Image"> </a>
-                                    <div class="panel-footer">going live on: {{ post.sell_on|date:"F d, H:i" }}</div>
-                                    <div class="panel-footer">
-                                        <a class="btn btn-dark mbr-3" href="#">
-                                            <b> check current bids </b> </a></div>
-                                </div>
-                            </div>
-                        </div>
-        </article>
-
-
-        <article>
-            <div class=" w-full sm:w-1/1 md:w-1/2 flex flex-col p-1">
-
-                <div class="col-sm-4">
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                <div class="article-metadata">
+                    {% if object.seller == user %}
+                        <div>
+                            <a class="btn btn-primary btn-sm mt-1 mb-1"
+                               href="{% url 'product-update' object.id %}">Update</a>
+                            <a class="btn btn-danger btn-sm mt-1 mb-1"
+                               href="{% url 'product-delete' object.id %}">Delete</a>
+                        </div><br>
+                    {% endif %}
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <a href="#">
-                                {{ post.title }}</a>
+                               {{ object.title }}, {{ object.category }} sold by {{ object.seller }}</a>
                         </div>
-                        <div class="panel-body ">
-                            <p>{{ object.description }}</p>
-                            <hr style="border: 2px solid blue;"/>
-                            <p>The item will be in auction on:
-                            <p><b> {{ object.sell_on }}</b></p>
-                            <p> The item will be live for bidding for:
-                            <p><b>{{ object.live_time }} Minutes</b></p>
-                            <hr style="border: 2px solid grey;"/>
-                            <p>seller's price: </p>
-                            <label class="btn btn-outline-info mr-3">Ksh. {{ object.price }}</label>
+                        <div class="panel-body "><a href="#">
+                            <img src="{{ object.image.url }}"
+                                 class="sell-img img-responsive" style="width:100%" alt="Image"> </a>
+                            <div class="panel-footer">going live on: {{ post.sell_on|date:"F d, H:i" }}</div>
+                            <div class="panel-footer">
+                                <a class="btn btn-info mbr-3" href="{% url 'bidder_list' object.id %}">
+                                    <b> check current bids </b> </a></div>
                         </div>
                     </div>
                 </div>
-        </article>
+            </div>
+        </div>
 
-      <br><br><br>
-        <article>
-            <div class=" w-full sm:w-1/1 md:w-1/2 flex flex-col p-1">
-                {#    <div class="row">#}
-                <div class="col-sm-4">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <a href="#">
-                                {{ post.title }}</a>
-                        </div>
-                        <div class="panel-body "><a href="#">
+        <div class="column">
+            <div class="card">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <a href="#">{{ object.title }} Details</a>
+                    </div>
+                    <div class="panel-body ">
+                        <p>{{ object.description }}</p>
+                        <hr style="border: 2px solid blue;"/>
+                        <p>The item will be in auction on: <b> {{ object.sell_on }}</b></p>
+                        <p> The item will be live for bidding for:<b>{{ object.live_time }} Minutes</b></p>
+                        <hr style="border: 2px solid grey;"/>
+                        <p>seller's price:
+                        <label class="btn btn-primary mr-3">Ksh. {{ object.price }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-
+        <div class="column">
+            <div class="card">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <a class="btn" href="{% url 'bidder_list' object.pk %}">
+                            {{ object.title }} Bid Information </a>
+                    </div>
+                    <div class="panel-body "><a href="#">
                         {% if bidder_list %}
-        <a class="article-title" >Bid and BidList for {{ object.title }}</a><br>
-        <table class="table table-hover table-striped">
-            <thead>
-            <tr bgcolor="#5f9ea0">
-                <th>Bidder's Name</th>
-                <th>Bid Amount</th>
-                <th>Bid time</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for bid in bidder_list %}
-                <tr>
-                    <td>{{ bid.user_name }}</td>
-                    <td>Ksh. {{ bid.bid_amount }}</td>
-                    <td>{{ bid.created }}</td>
-                {% if request.bidder == user %}
-                    <td>  <form class="" action="{% url 'create-bid' %}" method="post">
-                            {% csrf_token %}
-                               <div class="form-group">
+                            <a class="article-title">Bid and BidList for {{ bidder.product_id }}</a><br>
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                <tr bgcolor="#5f9ea0">
+                                    <th>Bidder's Name</th>
+                                    <th>Bid Amount</th>
+                                    <th>Bid time</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for bid in bidder_list %}
+                                    <tr>
+                                        <td>{{ bid.user_name }}</td>
+                                        <td>Ksh. {{ bid.bid_amount }}</td>
+                                        <td>{{ bid.created }}</td>
+                                        {% if request.bidder == user %}
+                                            <td>
+                                                <form class="" action="{% url 'create-bid' %}" method="post">
+                                                    {% csrf_token %}
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="bid_amount"
+                                                               name="bid_amount"
+                                                               placeholder="Enter your bid amount:" required><br>
+                                                        <input type="hidden" value='{{ product_list.price }}'
+                                                               name="minimum_price"
+                                                               id="minimum_price">
+                                                        <input type="hidden" value='{{ product_list.id }}'
+                                                               name="product_id"
+                                                               id="product_id">
+                                                        <button class="btn btn-lg btn-block" type="submit">update
+                                                            bid
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            <h2 style="text-align: center; color: black">No bids!!</h2>
+                        {% endif %}
+                    </div>
+                    {% if object.seller != user %}
+                        <fieldset>
+                            <form class="" action="{% url 'create-bid' %}" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
                                     <input type="text" class="form-control" id="bid_amount" name="bid_amount"
                                            placeholder="Enter your bid amount:" required><br>
                                     <input type="hidden" value='{{ product_list.price }}' name="minimum_price"
                                            id="minimum_price">
+                                    <input type="hidden" value="{{ product_list.sell_on }}" name="sell_on"
+                                           id="sell_on">
                                     <input type="hidden" value='{{ product_list.id }}' name="product_id"
                                            id="product_id">
-                                    <button class="btn btn-lg btn-block" type="submit">update bid</button>
+                                    <button class="btn btn-lg btn-block" type="submit">Bid</button>
                                 </div>
-                              </form>
-                    </td>
-                {% endif %}
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <h2 style="text-align: center; color: black">No bids!!</h2>
-    {% endif %}
+                            </form>
+                        </fieldset>
+                    {% else %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
+    <hr>
 
-
-                            {% if object.seller != user %}
-                                <fieldset>
-                                    <form class="" action="{% url 'create-bid' %}" method="post">
-                                        {% csrf_token %}
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="bid_amount" name="bid_amount"
-                                                   placeholder="Enter your bid amount:" required><br>
-                                            <input type="hidden" value='{{ product_list.price }}' name="minimum_price"
-                                                   id="minimum_price">
-                                            <input type="hidden" value="{{ product_list.sell_on }}" name="sell_on"
-                                                   id="sell_on">
-                                            <input type="hidden" value='{{ product_list.id }}' name="product_id"
-                                                   id="product_id">
-                                            <button class="btn btn-lg btn-block" type="submit">Bid</button>
-                                        </div>
-                                    </form>
-                                </fieldset>
-                            {% endif %}
-                        </div>
-                    </div>
-        </article>
-
-    </div>
-    </div>
-    <br>
-    <br>
-    <br>
 
     {% if messages %}
         {% for message in messages %}
@@ -147,44 +137,5 @@
         {% endfor %}
     {% endif %}
 {% endblock content %}
-</div>
-<footer class="container-fluid text-center" style="background: orangered;">
-    <p> © 2019 AUCTIONIT. All Rights Reserved | Design by <a href="#"> Apeiron Analytics</a></p>
-</footer>
-</body>
-<script>
-    function startTime() {
-        var today = new Date();
-        var h = today.getHours();
-        var m = today.getMinutes();
-        var s = today.getSeconds();
-        m = checkTime(m);
-        s = checkTime(s);
-        document.getElementById('txt').innerHTML =
-            h + ":" + m + ":" + s;
-        var t = setTimeout(startTime, 500);
-    }
 
-    function checkTime(i) {
-        if (i < 10) {
-            i = "0" + i
-        }
-        ;  // add zero in front of numbers < 10
-        return i;
-    }
-</script>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous">
-</script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous">
-</script>
-</html>
+

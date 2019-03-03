@@ -1,8 +1,8 @@
 /* Create two equal columns that floats next to each other */
 .column {
     float: left;
-    width: 50%;
-    padding: 10px;
+    width: 32%;
+    padding: .5rem;
     margin: 5px;
 }
 
@@ -39,12 +39,10 @@ h1, h2, h3, h4, h5, h6, hr {
 .footer {
     background-image: linear-gradient(orangered, black);
 
+
 }
 
-.hold {
-    padding: 2rem;
-    background: red;
-}
+
 
 .body_holder {
     margin: 0rem;
@@ -103,7 +101,7 @@ ul {
 .jumbotron {
     margin-bottom: 0;
     background-color: black;
-    background-image: linear-gradient(to bottom left, #b9ff13, orangered);
+    background-image: linear-gradient(to bottom left, #b9ff13, #333333, deepskyblue, #333333, #b9ff13);
     font-weight: bolder;
     font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
 }
@@ -195,6 +193,7 @@ position: fixed;
     padding: 3%;
     background: deepskyblue;
     width: 50%;
+    margin-inside: blue;
 }
 
 .container-1 {
@@ -307,18 +306,20 @@ p {
 
 /* Style the counter cards */
 .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
-    padding: 16px;
-    text-align: center;
-    background-color: #f1f1f1;
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); !* this adds the "card" effect *!*/
+    padding: 6px;
+    border-radius: inherit;
+    text-align: justify-all;
+    background-color: deepskyblue;
 }
 
 /* Responsive columns - one column layout (vertical) on small screens */
 @media screen and (max-width: 60px) {
     .column {
-        width: 100%;
+        width: 33%;
         display: block;
-        margin-bottom: 20px;
+       margin: 5px;
+        float: left;
     }
 
     .navbar-inverse .navbar-brand {
