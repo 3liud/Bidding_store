@@ -1,7 +1,10 @@
 {% extends "market/navigation_part.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+
 	<div class="media container">
+    <h4 style="color: black; text-align: center; text-transform: capitalize; " >
+        Hey, {{ user.username }}, <p>feel free to Update Your Profile</p></h4>
         <div class="media">
              <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
         <div class="media-body">

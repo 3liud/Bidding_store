@@ -3,9 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-
-
-
 from market.models import Product, Bidder
 
 
@@ -35,7 +32,7 @@ def bid_create(request):
 				obj = Bidder(user_name=request.user, product_id=Product.objects.get(id=request.POST.get('product_id')),
 				             bid_amount=int(request.POST.get('bid_amount')))
 				obj.save()
-			return HttpResponseRedirect(reverse('view-product'))
+			return HttpResponseRedirect(reverse('bidder_list' ))
 	return render(request, 'market/bidder_list.html', context)
 
 

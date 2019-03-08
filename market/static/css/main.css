@@ -195,6 +195,16 @@ position: fixed;
     width: 50%;
     margin-inside: blue;
 }
+.container-message {
+   background: transparent;
+    text-transform: capitalize;
+    color: black;
+    text-align: center;
+    font-size: larger;
+    padding: 3%;
+    width: 50%;
+    margin-inside: blue;
+}
 
 .container-1 {
     color: #428bca;

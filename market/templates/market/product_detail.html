@@ -23,7 +23,7 @@
                         <div class="panel-body "><a href="#">
                             <img src="{{ object.image.url }}"
                                  class="sell-img img-responsive" style="width:100%" alt="Image"> </a>
-                            <div class="panel-footer">going live on: {{ post.sell_on|date:"F d, H:i" }}</div>
+                            <div class="panel-footer " onload="countDownPart()">going live on: {{ object.sell_on|date:"F d, H:i" }}</div>
                             <div class="panel-footer">
                                 <a class="btn btn-info mbr-3" href="{% url 'bidder_list' object.id %}">
                                     <b> check current bids </b> </a></div>
@@ -43,6 +43,8 @@
                         <p>{{ object.description }}</p>
                         <hr style="border: 2px solid blue;"/>
                         <p>The item will be in auction on: <b> {{ object.sell_on }}</b></p>
+
+                        <p> the item goes live in <p id="demo"></p> </p>
                         <p> The item will be live for bidding for:<b>{{ object.live_time }} Minutes</b></p>
                         <hr style="border: 2px solid grey;"/>
                         <p>seller's price:
