@@ -5,7 +5,7 @@
     <hr>
     <div class="media container">
     {% if bidder_list %}
-        <a class="article-title" >Bid and BidList for {{ object.title }}</a><br>
+{#        <a class="article-title" >Available Bids for the item and BidList for {{ product_list.title }}</a><br>#}
         <table class="table table-hover table-striped">
             <thead>
             <tr bgcolor="#5f9ea0">
@@ -20,7 +20,7 @@
                     <td>{{ bid.user_name }}</td>
                     <td>Ksh. {{ bid.bid_amount }}</td>
                     <td>{{ bid.created }}</td>
-                {% if request.bidder == user %}
+                {% if object.seller != user and bid.user_name == user %}
                     <td>  <form class="" action="{% url 'create-bid' %}" method="post">
                             {% csrf_token %}
                                <div class="form-group">

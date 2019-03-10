@@ -20,12 +20,12 @@ class ProductListView(LoginRequiredMixin, ListView):
 	paginate_by = 6
 	
 
-class ProductListView2(LoginRequiredMixin, ListView):
-	model = Product
-	template_name = 'market/trialhome.html'
-	context_object_name = 'posts'
-	ordering = ['-date_posted']
-	paginate_by = 6
+# class ProductListView2(LoginRequiredMixin, ListView):
+# 	model = Product
+# 	template_name = 'market/trialhome.html'
+# 	context_object_name = 'posts'
+# 	ordering = ['-date_posted']
+# 	paginate_by = 6
 
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
@@ -81,12 +81,19 @@ class BidderListView(ListView):
 	model = Bidder
 	
 	def get_queryset(self):
-		return Bidder.objects.filter(product_id=self.kwargs['pk']).order_by('-created')
+		return Bidder.objects.filter(product_id=self.kwargs['pk']).order_by('-created')[:6]
 		
 	def get_context_data(self, **kwargs):
 		context = super(BidderListView, self).get_context_data(**kwargs)
 		context["product_id"] = self.kwargs['pk']
 		return context
+
+
+# class BidList(ListView):
+# 	template_name = 'market/product_detail.html'
+#
+# 	def get_queryset(self):
+# 		return Bidder.objects.filter(product_id=self.kwargs['pk'])[:6].order_by('-created')
 
 
 def about(request):
