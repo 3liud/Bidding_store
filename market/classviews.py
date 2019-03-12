@@ -47,10 +47,13 @@ class ProductDetailView(DetailView):
 	def get_context_data(self, **kwargs):
 		context = super(ProductDetailView, self).get_context_data(**kwargs)
 		x = Product.objects.all()
-		context["seller"] = Product.objects.get(id=self.kwargs['pk'])
+		bidders = Bidder.objects.filter(product_id=self.kwargs['pk']).order_by('-created')[:6]
+		seller = Product.objects.get(id=self.kwargs['pk'])
+		context = {'bidders': bidders, 'product': seller}
+		print(context)
 		return context
 
-
+	
 class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Product
 	fields = ['image', 'description', 'price', 'sell_on', 'live_time']

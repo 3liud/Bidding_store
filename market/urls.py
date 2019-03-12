@@ -5,10 +5,10 @@ from . import classviews
 urlpatterns = [
 	path('', classviews.ProductListView.as_view(), name='market-home'),
 	path('home/', classviews.ProductListView.as_view(), name='market-home'),
-	path('post/<int:pk>/', classviews.ProductDetailView.as_view(), name='product-detail'),
+	path('product-detail/<int:pk>/', market.views.bid_informaion_view, name='product-detail'),
 	path('post/new/', classviews.ProductCreateView.as_view(), name='product-create'),
 	path('post/viewproduct/', classviews.ProductListView.as_view(), name='view-product'),
-	path('post/bidderlist/<int:pk>/', classviews.BidderListView.as_view(), name="bidder-list"),
+	# path('post/bidderlist/<int:pk>/', classviews.BidderListView.as_view(), name="bidder-list"),
 	path('post/createbid/', market.views.bid_create, name="create-bid"),
 	path('post/<int:pk>/delete/', classviews.ProductDeleteView.as_view(), name='product-delete'),
 	path('post/<int:pk>/update/', classviews.ProductUpdateView.as_view(), name='product-update'),
