@@ -10,7 +10,7 @@
   ### seller
   -holds the seller information i.e minimum price they set etc.
   
-  ##bid status
+  ## bid status
   any bid placed is set to pending. a winner is updated once the timer has been exhausted. the highest 
   bid at that instace is set as the winner. 
 
