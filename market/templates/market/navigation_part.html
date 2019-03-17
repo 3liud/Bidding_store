@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="/market/static/css/javascripts/functions.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static '/market/../../static/css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="/market/static/css/main.css">
-
 </head>
 <body>
 <nav class="navbar navbar-inverse fixed-top">
@@ -23,60 +23,50 @@
             </button>
             <a class="navbar-brand" href="{% url 'market-home' %}">AuctionIt</a>
         </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="{% url 'market-home' %}">Home</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'product-create' %}">Sell</a></li>
-                    <li><a href="{% url 'profile' %}">Profile</a></li>
-                    <li><a href="{% url 'about' %}">Contact</a></li>
-                    </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
-                        {% else %}
-                        <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span> Login</a></li>
-                        <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-shopping-cart"></span>
-                            Register</a></li>
-                    </ul>
-                {% endif %}
-        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="{% url 'market-home' %}">Home</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'product-create' %}">Sell</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li><a href="{% url 'about' %}">Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+                    <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-shopping-cart"></span>
+                        Register</a></li>
+                </ul>
+            {% endif %}
     </div>
 </nav>
-<div class="container-fluid">
-    <div class="container container-message">
+<div class="container-fluid" style="background: darkslategrey; align-content: center; color: red; font-size: larger ">
+    <div style="background: #FFFFFF; text-align: center; width: inherit;">
         {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-{{ message.tag }}">
                 {{ message }}
             {% endfor %}
-        </div>
         {% endif %}
+        </div>
     </div>
-        {% block content %}
-        {% endblock %}
 </div>
-<footer class="container-fluid text-center" style="background: orangered;">
+{% block content %}
+{% endblock %}
+
+<footer class="container-fluid text-center" style="background: black; padding-top: 1%; color: #FFFFFF">
     <p> © 2019 AUCTIONIT. All Rights Reserved | Design by <a href="#"> Apeiron Analytics</a></p>
 </footer>
+</body>
+</html>
 <script>
-    function startTime() {
-        var today = new Date();
-        var h = today.getHours();
-        var m = today.getMinutes();
-        var s = today.getSeconds();
-        m = checkTime(m);
-        s = checkTime(s);
-        document.getElementById('txt').innerHTML =
-            h + ":" + m + ":" + s;
-        var t = setTimeout(startTime, 500);
-    }
+
 
     function checkTime(i) {
         if (i < 10) {
             i = "0" + i
         }
-         // add zero in front of numbers < 10
+        // add zero in front of numbers < 10
         return i;
     }
 
@@ -115,5 +105,4 @@
         crossorigin="anonymous">
 </script>
 
-</body>
-</html>
+

@@ -72,7 +72,7 @@
                                      class="sell-img img-responsive" style="width:100%" alt="Image"> </a>
                                 <div class="panel-footer">going live on: {{ post.sell_on|date:"F d, H:i" }}</div>
                                 <div class="panel-footer">
-                                    <a class="btn btn-dark mbr-3" href="{% url 'bidder-list' post.id %}">
+                                    <a class="btn btn-dark mbr-3" href="{% url 'product-detail' post.id %} ">
                                         <b> check current bids </b> </a></div>
                             </div>
                         </div>
@@ -101,13 +101,12 @@
         {% endif %}
     {% endif %}
 </div>
-<br>
+</body>
 <hr>
-<footer class="container-fluid text-center" style="background: orangered;">
+<footer class="container-fluid text-center" style="background: black; color: #f7f7f7; padding-top: 1%">
     <p> © 2019 AUCTIONIT. All Rights Reserved | Design by <a href="#"> Apeiron Analytics</a></p>
 </footer>
 
-</body>
 <script>
     function startTime() {
         var today = new Date();
