@@ -1,7 +1,8 @@
 /* Create two equal columns that floats next to each other */
 .column {
-    float: left;
-    width: 32%;
+    clear: none;
+    width: 85%;
+    align-content: center;
     padding: .5rem;
     margin: 5px;
 }
@@ -37,7 +38,7 @@ h1, h2, h3, h4, h5, h6, hr {
 }
 
 .footer {
-    background-image: linear-gradient(orangered, black);
+    background: black;
 
 
 }
@@ -183,15 +184,16 @@ position: fixed;
 }
 .content-detail {
     color: black;
-    background: deepskyblue;
+    background: #FFFFFF;
     text-transform: inherit;
     font-size: larger;
 }
 
 .container {
-    box-shadow: 2px 2px 2px dimgrey;
+    border: 1px solid silver;
+    outline: 1px solid slategrey;
     padding: 3%;
-    background: deepskyblue;
+    background: white;
     width: 50%;
     margin-inside: blue;
 }
@@ -318,18 +320,19 @@ p {
 .card {
     /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); !* this adds the "card" effect *!*/
     padding: 6px;
+    position: center;
     border-radius: inherit;
     text-align: justify-all;
-    background-color: deepskyblue;
+    background-color: #FFFFFF;
 }
 
 /* Responsive columns - one column layout (vertical) on small screens */
-@media screen and (max-width: 60px) {
+@media screen and (max-width: 520px) {
     .column {
-        width: 33%;
+        width: 80%;
         display: block;
        margin: 5px;
-        float: left;
+        clear: none;
     }
 
     .navbar-inverse .navbar-brand {

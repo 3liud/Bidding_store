@@ -50,6 +50,11 @@ class Bidder(models.Model):
 	user_name = models.ForeignKey(User, on_delete=models.CASCADE)
 	product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
 	bid_amount = models.CharField(max_length=255, validators=[numeric])
+	Status = (
+		('PENDING', '0'),
+		('WINNER', '1'))
+		
+	bid_status = models.CharField(max_length=20, choices=Status, default='PENDING')
 
 	def _unicode_(self):
 		return str(self.user_name)

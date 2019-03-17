@@ -92,13 +92,6 @@ class BidderListView(ListView):
 		return context
 
 
-# class BidList(ListView):
-# 	template_name = 'market/product_detail.html'
-#
-# 	def get_queryset(self):
-# 		return Bidder.objects.filter(product_id=self.kwargs['pk'])[:6].order_by('-created')
-
-
 def about(request):
 	return render(request, 'market/about.html', {'title': 'About'})
 

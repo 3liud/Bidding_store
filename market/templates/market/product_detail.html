@@ -1,120 +1,118 @@
 {% extends 'market/navigation_part.html' %}
 {% load static %}
 {% block content %}
-    {% load crispy_forms_tags %}
-    <div class="row">
-    <div class="column">
-        <div class="card">
-            <div class="article-metadata">
-                {% if product.seller == user %}
-                    <div>
-                        <a class="btn btn-primary btn-sm mt-1 mb-1"
-                           href="{% url 'product-update' product.id %}">Update</a>
-                        <a class="btn btn-danger btn-sm mt-1 mb-1"
-                           href="{% url 'product-delete' product.id %}">Delete</a>
-                    </div><br>
-                {% endif %}
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <a href="#">
-                            {{ product.title }}, {{ product.category }} sold by {{ product.seller }}</a>
-                    </div>
-                    <div class="panel-body "><a href="#">
-                        <img src="{{ product.image.url }}"
-                             class="sell-img img-responsive" style="width:100%" alt="Image"> </a>
-                        <div class="panel-footer " onload="countDownPart()">going live
-                            on: {{ product.sell_on|date:"F d, H:i" }}</div>
-                        <div class="panel-footer">
-                            </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="column">
-        <div class="card">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <a href="#">{{ product.title }} Details</a>
-                </div>
-                <div class="panel-body ">
-                    <p>{{ product.description }}</p>
-                    <hr style="border: 2px solid blue;"/>
-                    <p>The item will be in auction on: <b> {{ product.sell_on }}</b></p>
-
-                    <p> the item goes live in
-                    <p id="demo"></p> </p>
-                    <p> The item will be live for bidding for:<b>{{ product.live_time }} Minutes</b></p>
-                    <hr style="border: 2px solid grey;"/>
-                    <p>seller's price:
-                        <label class="btn btn-primary mr-3">Ksh. {{ product.price }}</label>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="column">
-        <div class="card">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <a class="btn" href="#">
-                        {{ product.title }} Bid Information </a>
-                </div>
-                <div class="panel-body ">
-                    {% if bidders %}
-                        <table class="table table-hover table-striped">
-                            <thead>
-                            <tr bgcolor="#5f9ea0">
-                                <th>Bidder's Name</th>
-                                <th>Bid Amount</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for bid in bidders %}
-                                <tr>
-                                    <td>{{ bid.user_name }}</td>
-                                    <td>Ksh. {{ bid.bid_amount }}</td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-
-                    {% else %}
-                        <h2 style="text-align: center; color: black">No bids!!</h2>
-
-                    {% endif %}
-                {% if product.seller != user %}
-                            <fieldset>
-                                <form class="" action="{% url 'create-bid' %}" method="post">
-                                    {% csrf_token %}
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="bid_amount" name="bid_amount"
-                                               placeholder="Enter your bid amount:" required><br>
-                                        <input type="hidden" value='{{ product.price }}' name="minimum_price"
-                                               id="minimum_price">
-                                        <input type="hidden" value="{{ product.sell_on }}" name="sell_on"
-                                               id="sell_on">
-                                        <input type="hidden" value='{{ product.id }}' name="product_id"
-                                               id="product_id">
-                                        <button class="btn btn-lg btn-block" type="submit">Bid</button>
+    <div class="one" style="padding-left: 13%;">
+        <div class="container-fluid">
+            {% load crispy_forms_tags %}
+            <div class="row">
+                <div class="column">
+                    <div class="card">
+                        <div class="article-metadata">
+                            {% if product.seller == user %}
+                                <div>
+                                    <a class="btn btn-primary btn-sm mt-1 mb-1"
+                                       href="{% url 'product-update' product.id %}">Update</a>
+                                    <a class="btn btn-danger btn-sm mt-1 mb-1"
+                                       href="{% url 'product-delete' product.id %}">Delete</a>
+                                </div><br>
+                            {% endif %}
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <a href="#">
+                                        {{ product.title }}, {{ product.category }} sold by {{ product.seller }}</a>
+                                </div>
+                                <div class="panel-body "><a href="#">
+                                    <img src="{{ product.image.url }}"
+                                         class="sell-img img-responsive" style="width:100%" alt="Image"> </a>
+                                    <div class="panel-footer " onload="countDownPart()">going live
+                                        on: {{ product.sell_on|date:"F d, H:i" }}</div>
+                                    <div class="panel-footer">
                                     </div>
-                                </form>
-                            </fieldset>
-                        {% else %}
-                        {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="column">
+                    <div class="card">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <a href="#">{{ product.title }} Details</a>
+                            </div>
+                            <div class="panel-body ">
+                                <p>{{ product.description }}</p>
+                                <hr style="border: 2px solid blue;"/>
+                                <p>The item will be in auction on: <b> {{ product.sell_on }}</b></p>
+                                <p> The item goes live in:
+                                <p id="demo"></p>
+                                <p> The item will be live for bidding for:<b>{{ product.live_time }} Minutes</b></p>
+                                <hr style="border: 2px solid grey;"/>
+                                <p>seller's price:
+                                    <label class="btn btn-primary mr-3">Ksh. {{ product.price }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="column">
+                    <div class="card">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <a class="btn" href="#">
+                                    {{ product.title }} Bid Information </a>
+                            </div>
+                            <div class="panel-body ">
+                                {% if bidders %}
+                                    <table class="table table-hover table-striped" id="bidTable">
+                                        <thead>
+                                        <tr bgcolor="#5f9ea0">
+                                            <th >Bidder's Name</th>
+                                            <th onclick="sortTable(0)">Bid Amount</th>
+                                            <th onclick="sortTable(1)">Bid Status</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for bid in bidders %}
+                                            <tr>
+                                                <td>{{ bid.user_name }}</td>
+                                                <td>Ksh. {{ bid.bid_amount}}</td>
+                                                <td>{{ bid.bid_status }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                {% else %}
+                                    <h2 style="text-align: center; color: black">No bids!!</h2>
+                                {% endif %}
+                                {% if product.seller != user %}
+                                    <fieldset>
+                                        <form class="" action="{% url 'create-bid' %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="bid_amount"
+                                                       name="bid_amount"
+                                                       placeholder="Enter your bid amount:" required><br>
+                                                <input type="hidden" value='{{ product.price }}' name="minimum_price"
+                                                       id="minimum_price">
+                                                <input type="hidden" value="{{ product.sell_on }}" name="sell_on"
+                                                       id="sell_on">
+                                                <input type="hidden" value='{{ product.id }}' name="product_id"
+                                                       id="product_id">
+                                                <button class="btn btn-lg btn-block" type="submit">Bid</button>
+                                            </div>
+                                        </form>
+                                    </fieldset>
+                                {% else %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <hr>
-
-
-    {% if messages %}
-        {% for message in messages %}
-            <p>{{ message }}</p>
-        {% endfor %}
-    {% endif %}
 {% endblock content %}
 
 
