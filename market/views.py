@@ -2,6 +2,9 @@ from django.contrib import messages
 from django.shortcuts import render
 from django.http import JsonResponse
 from market.models import Product, Bidder
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
 
 
 def get_bid_info_context(pk):
@@ -63,10 +66,21 @@ def get_bidding_time(request):
 	}
 	return JsonResponse(time_data)
 
+
 def reset_bid_time(request):
 	product_id = request.GET['product_id']
 	Product.objects.filter(id=product_id).update(live_time=0)
 	return JsonResponse({'msg': 'done'})
+
+
+def winner_notification(request):
+	buffer = io.BytesIO()
+	p = canvas.Canvas(buffer)
+	p.drawString(100, 100, "Hello There")
+	p.showPage()
+	p.save()
+	return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+
 # def create_bid(request):
 # 	if request.method == 'POST':
 # 		p_id = request.POST.get('product_id')
