@@ -3,16 +3,18 @@
 <html lang="en">
 <head>
     <title>AuctionIt</title>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script src="/market/static/css/javascripts/functions.js"></script>
+    <script src="/market/static/javascripts/functions.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static '/market/../../static/css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="/market/static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/market/static/css/profiles.css">
 </head>
-<body>
+<body onload="timer2()">
 <nav class="navbar navbar-inverse fixed-top">
     <div class="container-fluid">
         <div class="navbar-header ">
@@ -69,33 +71,30 @@
         // add zero in front of numbers < 10
         return i;
     }
-
-    function countDownPart() {
-        var y = {{ object.sell_on }};
-        document.write(y);
-
-        var countDownDate = new Date(y);
-        var x = setInterval(function () {
-            var now = new Date().getTime();
-            var distance = countDownDate - now;
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60));
-            var seconds = Math.floor(distance % (1000 * 60)) / (1000);
-            document.getElementById("demo").innerHTML = days + "d" + hours + "H" + minutes + "Min" + seconds + "sec";
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("demo").innerHTML = "Expired";
-            }
-        }, 1000);
-    }
+    function timer2() {
+    var deadline = new Date( {{product.sell_on }}).getTime();
+    var x = setInterval(function () {
+        var now = new Date().getTime();
+        var t = deadline - now;
+        var days = Math.floor(t / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((t % (1000 * 60)) / 1000);
+        document.getElementById("demo").innerHTML = days + "d "
+            + hours + "h " + minutes + "m " + seconds + "s ";
+        if (t < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "EXPIRED";
+        }
+    }, 1000);}
 </script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous">
-</script>
+{#<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"#}
+{#        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"#}
+{#        crossorigin="anonymous">#}
+{#</script>#}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/core.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous">
@@ -104,5 +103,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous">
 </script>
+{% load static %}
+<script src="{% static 'javascripts/func.js' %}" type="text/javascript"></script>
 
 

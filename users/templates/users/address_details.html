@@ -1,0 +1,38 @@
+{% extends "users/user_nav.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="sidebar">
+            <a href="{% url 'market-home' %}">Homepage</a>
+            <a class="active" href="{% url 'profile' %}">Profile</a>
+            <a href="{% url 'profile' %}">Contact information</a>
+            <a href="{% url 'profile' %}">Payment Information</a>
+            <a href="{% url 'product-create' %}">Sell an item</a>
+            <a href="{% url 'product-create' %}">My Items</a>
+        </div>
+    </div> 
+    <div class="media container">
+        <h4 style="color: black; text-align: center; text-transform: capitalize; ">
+            Hey, {{ user.username }}, <p>feel free to Update Your Profile</p></h4>
+        <div class="media">
+            <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+            <div class="media-body">
+                <h2 class="account-heading">{{ user.last_name }} {{ user.first_name }}</h2>
+                <fieldset>
+                    <h3 class="account-username">@{{ user.username }}</h3>
+                </fieldset>
+            </div>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Profile Info</legend>
+                {{ u_form|crispy }}
+                {{ p_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn-outline-info" type="submit">Update</button>
+            </div>
+        </form>
+    </div><br><br>
+{% endblock content %}

@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render
-
+from django.http import JsonResponse
 from market.models import Product, Bidder
 
 
@@ -52,6 +52,21 @@ def bid_create(request):
 		return render(request, 'market/product_detail.html', context)
 
 
+def get_bidding_time(request):
+	product_id = request.GET['product_id']
+	data = Product.objects.get(id=product_id)
+	sell_on = data.sell_on
+	bid_time = data.live_time
+	time_data = {
+		'sell_on': sell_on,
+		'bid_time': bid_time
+	}
+	return JsonResponse(time_data)
+
+def reset_bid_time(request):
+	product_id = request.GET['product_id']
+	Product.objects.filter(id=product_id).update(live_time=0)
+	return JsonResponse({'msg': 'done'})
 # def create_bid(request):
 # 	if request.method == 'POST':
 # 		p_id = request.POST.get('product_id')

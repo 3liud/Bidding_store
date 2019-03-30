@@ -19,3 +19,12 @@ class Profile(models.Model):
 			output_size = (300, 300)
 			img.thumbnail(output_size)
 			img.save(self.image.path)
+
+
+class Profile_Info(models.Model):
+	name = models.ForeignKey(User, on_delete=models.CASCADE)
+	account = models.CharField(max_length=20, null=False)
+	address = models.CharField(max_length=19, null=False, default='0')
+	postal_code = models.CharField(max_length=19, null=False, default='0')
+	county = models.CharField(max_length=19, null=False, default='0')
+	country = models.CharField(max_length=19, null=False, default='0')

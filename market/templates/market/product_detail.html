@@ -1,5 +1,7 @@
 {% extends 'market/navigation_part.html' %}
 {% load static %}
+<script src="{% static 'javascripts/func.js' %}"></script>
+
 {% block content %}
     <div class="one" style="padding-left: 13%;">
         <div class="container-fluid">
@@ -43,9 +45,29 @@
                             <div class="panel-body ">
                                 <p>{{ product.description }}</p>
                                 <hr style="border: 2px solid blue;"/>
-                                <p>The item will be in auction on: <b> {{ product.sell_on }}</b></p>
-                                <p> The item goes live in:
-                                <p id="demo"></p>
+                                <p>The item will be in auction on: <b> {{ product.sell_on|date:" F, d, H:i" }}</b></p>
+                                    <script>
+                                        var dat = new ({{product.sell_on|date:" F, d, H:i"}});
+
+                                        var deadline = new Date(dat).getTime();
+                                        var x = setInterval(function () {
+                                            var now = new Date().getTime();
+                                            var t = deadline - now;
+                                            var days = Math.floor(t / (1000 * 60 * 60 * 24));
+                                            var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                            var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+                                            var seconds = Math.floor((t % (1000 * 60)) / 1000);
+                                            document.getElementById("demo").innerHTML = days + "d "
+                                                + hours + "h " + minutes + "m " + seconds + "s ";
+                                            if (t < 0) {
+                                                clearInterval(x);
+                                                document.getElementById("demo").innerHTML = "EXPIRED";
+                                            }
+                                        }, 1000);
+
+                                    </script>
+                                <p> The item goes live in: <p id="demo"></p>
+                                    {#                                <p id="demo"></p>#}
                                 <p> The item will be live for bidding for:<b>{{ product.live_time }} Minutes</b></p>
                                 <hr style="border: 2px solid grey;"/>
                                 <p>seller's price:
@@ -67,7 +89,7 @@
                                     <table class="table table-hover table-striped" id="bidTable">
                                         <thead>
                                         <tr bgcolor="#5f9ea0">
-                                            <th >Bidder's Name</th>
+                                            <th>Bidder's Name</th>
                                             <th onclick="sortTable(0)">Bid Amount</th>
                                             <th onclick="sortTable(1)">Bid Status</th>
                                         </tr>
@@ -76,7 +98,7 @@
                                         {% for bid in bidders %}
                                             <tr>
                                                 <td>{{ bid.user_name }}</td>
-                                                <td>Ksh. {{ bid.bid_amount}}</td>
+                                                <td>Ksh. {{ bid.bid_amount }}</td>
                                                 <td>{{ bid.bid_status }}</td>
                                             </tr>
                                         {% endfor %}
@@ -89,6 +111,9 @@
                                     <fieldset>
                                         <form class="" action="{% url 'create-bid' %}" method="post">
                                             {% csrf_token %}
+                                            <div class="row">
+                                                <h4>Countdown: <span id="countDown"></span></h4>
+                                            </div>
                                             <div class="form-group">
                                                 <input type="text" class="form-control" id="bid_amount"
                                                        name="bid_amount"
@@ -114,5 +139,3 @@
     </div>
     <hr>
 {% endblock content %}
-
-

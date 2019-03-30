@@ -1,4 +1,54 @@
 /* Create two equal columns that floats next to each other */
+.sidebar {
+  margin: 0;
+  padding: 1%;
+  width: 310px;
+  background-color: #f1f1f1;
+  position: absolute;
+  height: inherit;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.sidebar a.active {
+  background-color: deepskyblue;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: deepskyblue;
+  color: white;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
 .column {
     clear: none;
     width: 85%;
@@ -18,6 +68,8 @@
 h1, h2, h3, h4, h5, h6, hr {
     color: black;
     font-weight: bolder;
+    text-align: center;
+    text-transform: capitalize;
 }
 
 .section_left {
@@ -39,11 +91,7 @@ h1, h2, h3, h4, h5, h6, hr {
 
 .footer {
     background: black;
-
-
 }
-
-
 
 .body_holder {
     margin: 0rem;
@@ -76,7 +124,7 @@ ul {
 
 .clock {
     vertical-align: middle;
-    font-family: Orbitron;
+    font-family: Orbitron, serif;
     font-size: 40px;
     font-weight: normal;
     color: #FFF;
@@ -85,7 +133,7 @@ ul {
 
 .clocklg {
     vertical-align: middle;
-    font-family: Orbitron;
+    font-family: Orbitron, sans-serif;
     font-size: 20px;
     font-weight: normal;
     color: #FFF;
@@ -402,7 +450,7 @@ p {
         visibility: hidden;
         width: 250px;
         height: 30px;
-        font-family: "Maiandra GD";
+        font-family: "Maiandra GD", cursive;
     }
 
     .profilePicture:hover .text {
@@ -433,7 +481,7 @@ p {
         visibility: hidden;
         width: 250px;
         height: 30px;
-        font-family: "Maiandra GD";
+        font-family: "Maiandra GD", fantasy;
     }
 
     .profilePicture:hover .text {

@@ -3,6 +3,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+# from django.db.backends.sqlite3.base import DatabaseWrapper
+# DatabaseWrapper.data_types = DatabaseWrapper._data_types
 
 
 class Product(models.Model):
@@ -24,10 +26,10 @@ class Product(models.Model):
 	)
 	category = models.CharField("Choose product category", max_length=100, default='Gen', choices=CATEGORY)
 	price = models.IntegerField("What is the least price you are selling your item for?")
-	sell_on = models.DateTimeField("When do you want your item to go live for Auction?",
-	                               default=timezone.now
-	                               )
+	sell_on = models.DateTimeField(default=timezone.now )
 	BID_TIME = (
+		('0', '0 minutes'),
+		('1', '1 minutes'),
 		('5', '5 minutes'),
 		('10', '10 minutes'),
 		('20', '20 minutes'),
