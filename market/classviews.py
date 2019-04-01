@@ -82,6 +82,7 @@ class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class BidderListView(ListView):
 	model = Bidder
+	template_name = 'market/bidder_list.html'
 	
 	def get_queryset(self):
 		return Bidder.objects.filter(product_id=self.kwargs['pk']).order_by('-created')[:6]
