@@ -3,6 +3,8 @@
 <script src="{% static 'javascripts/func.js' %}"></script>
 
 {% block content %}
+    <div class="countdown" style="position: fixed; padding: .5px; background: deepskyblue; color: greenyellow; ">
+        <h4>Countdown to Auction: <p><span id="countDown"></span></p></h4></div>
     <div class="one" style="padding-left: 13%;">
         <div class="container-fluid">
             {% load crispy_forms_tags %}
@@ -19,9 +21,11 @@
                                 </div><br>
                             {% endif %}
                             <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <a href="#">
-                                        {{ product.title }}, {{ product.category }} sold by {{ product.seller }}</a>
+                                <div class="panel-heading" style="color: black; font-size: large; place-content: center;">
+                                    <p>
+                                        Title: {{ product.title }}</p>
+                                    <p>Category: {{ product.category }} </p>
+                                    <p>Seller: {{ product.seller }}</p>
                                 </div>
                                 <div class="panel-body "><a href="#">
                                     <img src="{{ product.image.url }}"
@@ -46,26 +50,7 @@
                                 <p>{{ product.description }}</p>
                                 <hr style="border: 2px solid blue;"/>
                                 <p>The item will be in auction on: <b> {{ product.sell_on|date:" F, d, H:i" }}</b></p>
-                                    <script>
-                                        var dat = new ({{product.sell_on|date:" F, d, H:i"}});
 
-                                        var deadline = new Date(dat).getTime();
-                                        var x = setInterval(function () {
-                                            var now = new Date().getTime();
-                                            var t = deadline - now;
-                                            var days = Math.floor(t / (1000 * 60 * 60 * 24));
-                                            var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                                            var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-                                            var seconds = Math.floor((t % (1000 * 60)) / 1000);
-                                            document.getElementById("demo").innerHTML = days + "d "
-                                                + hours + "h " + minutes + "m " + seconds + "s ";
-                                            if (t < 0) {
-                                                clearInterval(x);
-                                                document.getElementById("demo").innerHTML = "EXPIRED";
-                                            }
-                                        }, 1000);
-
-                                    </script>
                                 <p> The item goes live in: <p id="demo"></p>
                                     {#                                <p id="demo"></p>#}
                                 <p> The item will be live for bidding for:<b>{{ product.live_time }} Minutes</b></p>
@@ -112,7 +97,7 @@
                                         <form class="" action="{% url 'create-bid' %}" method="post">
                                             {% csrf_token %}
                                             <div class="row">
-                                                <h4>Countdown: <span id="countDown"></span></h4>
+                                                <h4>Countdown: <span id="countDownTimer"></span></h4>
                                             </div>
                                             <div class="form-group">
                                                 <input type="text" class="form-control" id="bid_amount"

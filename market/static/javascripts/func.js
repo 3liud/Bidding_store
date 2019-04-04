@@ -1,13 +1,20 @@
 $(document).ready(function () {
     $.getJSON('/get_bidding_time', {product_id: $('#product_id').val(), view: 'json'}, function (data) {
-        console.log(data);
         sell_on = data['sell_on']
         var today = Date()
         var x = new Date(sell_on);
         var y = new Date(today);
         var bidSeconds = parseInt(data['bid_time']) * 60;
         var newSeconds = bidSeconds;
-        setInterval(function () {
+        resetInterval(x, newSeconds);
+    })
+});
+
+function resetInterval(x, newSeconds) {
+    var bool = true;
+    var timer = 0;
+    if (bool){
+            setInterval(function () {
             var counter = countDown(x);
             var elapsed = counter.elapsed
             counterString =  counter.days + "d "
@@ -16,31 +23,30 @@ $(document).ready(function () {
                    $('#countDown').html(counterString);
                    $('#bid_amount').attr('disabled', true);
             }else {
-                // var bidSeconds = parseInt(data['bid_time']) * 60;
-                // var newSeconds = bidSeconds;
-                // setInterval(function () {
-                console.log(newSeconds)
-                if (newSeconds <= 0){
-                    $.getJSON('/reset_bid_time', {product_id: $('#product_id').val(), view: 'json'}, function (data) {
-                        console.log(data);
-                    });
-                    $('#bid_amount').attr('disabled', true);
-                }else {
-                    newSeconds = newSeconds - 1;
-                }
-
-                // }, 999);
                var zero = '00';
                counterString =  zero + "d "
                 + zero + "h " + zero + "m " + zero + "s ";
                 $('#countDown').html(counterString);
                 $('#bid_amount').attr('disabled', false);
 
+              if (newSeconds <= 0){
+                $.getJSON('/reset_bid_time', {product_id: $('#product_id').val(), view: 'json'}, function (data) {
+                    $('#bid_amount').attr('disabled', true);
+
+                });
+                bool = false;
+                    // clearInterval(timer);
+                }else {
+                    newSeconds = newSeconds - 1;
+                    $('#countDown').html(counterString);
+                    console.log(newSeconds)
+                }
             }
-            // $('#bid_amount').attr('disabled', true);
         }, 999);
-    })
-});
+    }else {
+         clearInterval(timer);
+    }
+}
 
 function  countDown(deadline) {
     var today = Date()
