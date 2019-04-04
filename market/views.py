@@ -21,7 +21,7 @@ def get_bid_info_context(pk):
 def bid_information_view(request, pk):
     context = get_bid_info_context(pk)
     return render(request, 'market/product_detail.html', context)
-+++++++++
+
 
 def bid_create(request):
     if request.method == 'POST':
@@ -38,16 +38,18 @@ def bid_create(request):
                 if int(b_amount) >= int(min_price):
                     bid = Bidder.objects.filter(user_name=request.user)
                     if not bid:
+                        Bidder.objects.filter(product_id=p_id).update(bid_status='PENDING')
                         product = Product.objects.filter(id=p_id).first()
                         bidder = Bidder.objects.create(user_name=request.user, product_id=product, bid_amount=b_amount, bid_status='WINNER')
                         bidder.save()
                         context = get_bid_info_context(p_id)
+                        # bids.update(bid_status='PENDING')
                         return render(request, 'market/product_detail.html', context)
-                    for bid in bids:
-                        bid.update(bid_status='PENDING')
+                    Bidder.objects.filter(product_id=p_id).update(bid_status='PENDING')
                     bid.update(bid_amount=b_amount, bid_status='WINNER')
                     context = get_bid_info_context(p_id)
                     return render(request, 'market/product_detail.html', context)
+                Bidder.objects.filter(product_id=p_id).update(bid_status='PENDING')
                 context = get_bid_info_context(p_id)
                 messages.error(request, "bid price should be more than Highest bid amount")
                 return render(request, 'market/product_detail.html', context)
