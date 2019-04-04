@@ -6,7 +6,7 @@ $(document).ready(function () {
         var y = new Date(today);
         var bidSeconds = parseInt(data['bid_time']) * 60;
         var newSeconds = bidSeconds;
-        resetInterval(x, newSeconds);
+        // resetInterval(x, newSeconds);
     })
 });
 

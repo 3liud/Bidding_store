@@ -8,7 +8,7 @@ from xhtml2pdf import pisa
 from django.views.generic import View
 from django.utils import timezone
 from .models import *
-from .render import Render
+# from .render import Render
 
 
 def get_bid_info_context(pk):
@@ -21,7 +21,7 @@ def get_bid_info_context(pk):
 def bid_information_view(request, pk):
     context = get_bid_info_context(pk)
     return render(request, 'market/product_detail.html', context)
-
++++++++++
 
 def bid_create(request):
     if request.method == 'POST':
@@ -39,18 +39,20 @@ def bid_create(request):
                     bid = Bidder.objects.filter(user_name=request.user)
                     if not bid:
                         product = Product.objects.filter(id=p_id).first()
-                        bidder = Bidder.objects.create(user_name=request.user, product_id=product, bid_amount=b_amount)
+                        bidder = Bidder.objects.create(user_name=request.user, product_id=product, bid_amount=b_amount, bid_status='WINNER')
                         bidder.save()
                         context = get_bid_info_context(p_id)
                         return render(request, 'market/product_detail.html', context)
-                    bid.update(bid_amount=b_amount)
+                    for bid in bids:
+                        bid.update(bid_status='PENDING')
+                    bid.update(bid_amount=b_amount, bid_status='WINNER')
                     context = get_bid_info_context(p_id)
                     return render(request, 'market/product_detail.html', context)
                 context = get_bid_info_context(p_id)
                 messages.error(request, "bid price should be more than Highest bid amount")
                 return render(request, 'market/product_detail.html', context)
             product = Product.objects.filter(id=p_id).first()
-            bidder = Bidder.objects.create(user_name=request.user, product_id=product, bid_amount=b_amount)
+            bidder = Bidder.objects.create(user_name=request.user, product_id=product, bid_amount=b_amount, bid_status='WINNER')
             bidder.save()
             context = get_bid_info_context(p_id)
             return render(request, 'market/product_detail.html', context)
@@ -77,24 +79,26 @@ def reset_bid_time(request):
     return JsonResponse({'msg': 'done'})
 
 
-class Render:
+# class Render:
+#
+#     @staticmethod
+#     def render(path: str, params: dict):
+#         template = get_template(path)
+#         html = template.render(params)
+#         response = BytesIO()
+#         pdf = pisa.pisaDocument(BytesIO(html.encode("UTF-8")), response)
+#         if not pdf.err:
+#             return HttpResponse(response.getvalue(), content_type='application/pdf')
+#         else:
+#             return HttpResponse("Error Rendering PDF", status=400)
 
-    @staticmethod
-    def render(path: str, params: dict):
-        template = get_template(path)
-        html = template.render(params)
-        response = BytesIO()
-        pdf = pisa.pisaDocument(BytesIO(html.encode("UTF-8")), response)
-        if not pdf.err:
-            return HttpResponse(response.getvalue(), content_type='application/pdf')
-        else:
-            return HttpResponse("Error Rendering PDF", status=400)
+
+# class Pdf(View):
+#
+#     def get(self, request):
+#         return Render.render('market/winner.html', params)
 
 
-class Pdf(View):
-
-    def get(self, request):
-        return Render.render('pdf.html', params)
 
 # def notify(request):
 #     results = get_bid_info_context()
@@ -105,6 +109,7 @@ class Pdf(View):
 #             'mylist': results,
 #         }
 #     )
+
 
 # def create_bid(request):
 # 	if request.method == 'POST':
