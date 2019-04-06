@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
 from PIL import Image
 
@@ -21,10 +22,17 @@ class Profile(models.Model):
 			img.save(self.image.path)
 
 
-class Profile_Info(models.Model):
-	name = models.ForeignKey(User, on_delete=models.CASCADE)
-	account = models.CharField(max_length=20, null=False)
-	address = models.CharField(max_length=19, null=False, default='0')
-	postal_code = models.CharField(max_length=19, null=False, default='0')
-	county = models.CharField(max_length=19, null=False, default='0')
-	country = models.CharField(max_length=19, null=False, default='0')
+class Account(models.Model):
+	numeric = RegexValidator(r'^[0-9]*$', 'Only numeric are allowed.')
+	username = models.ForeignKey(User, on_delete=models.CASCADE)
+	cardNumber = models.CharField(max_length=30, default='AUCT-010')
+	Account_Balance = models.CharField(max_length=20, default=100000, validators=[numeric])
+	
+	
+class Address(models.Model):
+	numeric = RegexValidator(r'^[0-9]*$', 'Only numeric are allowed.')
+	username = models.ForeignKey(User, on_delete=models.CASCADE)
+	country = models.CharField(max_length=200, default='Kenya')
+	address = models.CharField(max_length=19, null=False, default='0000')
+	postal_code = models.CharField(max_length=19, null=False, default='0000')
+	county = models.CharField(max_length=19, null=False, default='Nairobi')

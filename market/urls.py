@@ -16,6 +16,7 @@ urlpatterns = [
 	path('user/<user_name>/', classviews.UserProductListView.as_view(), name='user-posts'),
 	path('about/', market.classviews.about, name='about'),
 	path('get_bidding_time/', market.views.get_bidding_time, name='get_bidding_time'),
+	path('pay/<int:pk>', market.views.make_pay, name='pay'),
 	# path('render/pdf/<int:pk>', market.views.Pdf.as_view(), name='notify'),
 	path('reset_bid_time/', market.views.reset_bid_time, name='reset_bid_time')
 ]

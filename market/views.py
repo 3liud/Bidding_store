@@ -81,6 +81,11 @@ def reset_bid_time(request):
     return JsonResponse({'msg': 'done'})
 
 
+def make_pay(request, pk):
+    context = get_bid_info_context(pk)
+    return render(request, 'users/payment_details.html', context)
+
+
 # class Render:
 #
 #     @staticmethod

@@ -55,7 +55,7 @@ class Bidder(models.Model):
 	Status = (
 		('PENDING', '0'),
 		('WINNER', '1'))
-		
+
 	bid_status = models.CharField(max_length=20, choices=Status, default='PENDING')
 
 	def _unicode_(self):

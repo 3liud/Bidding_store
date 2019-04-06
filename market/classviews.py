@@ -1,11 +1,5 @@
-from datetime import timezone
-from io import BytesIO
-
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from django.template.loader import get_template
-from django.views import View
 from django.views.generic import (
     ListView,
     DetailView,
@@ -13,7 +7,7 @@ from django.views.generic import (
     DeleteView,
     UpdateView
 )
-from xhtml2pdf import pisa
+
 from .models import *
 from .models import Product, Bidder
 
@@ -55,7 +49,7 @@ class ProductDetailView(DetailView):
         x = Product.objects.all()
         bidders = Bidder.objects.filter(product_id=self.kwargs['pk']).order_by('-created')[:6]
         seller = Product.objects.get(id=self.kwargs['pk'])
-        context = {'bidders': bidders, 'product': seller}
+        context = {'bidders': bidders, 'product': seller, 'account': account}
         print(context)
         return context
 

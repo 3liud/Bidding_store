@@ -1,5 +1,4 @@
 {% load static %}
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>AuctionIt</title>
@@ -36,6 +35,17 @@
             {% endif %}
     </div>
 </nav>
+<div class="container-fluid">
+    <div class="sidebar">
+        <a href="{% url 'market-home' %}">Homepage</a><hr>
+        <a href="{% url 'profile' %}">Profile</a>
+        <a href="{% url 'address' %}">Address details</a><hr>
+        <a href="{% url 'account' %}">Payment Information</a>
+        <a href="#">Items Won</a><hr>
+        <a href="{% url 'product-create' %}">Sell an item</a><hr>
+    </div>
+</div>
+
 <div class="container-fluid" style="background: darkslategrey; align-content: center; color: red; font-size: larger ">
     <div style="background: #FFFFFF; text-align: center; width: inherit;">
         {% if messages %}
@@ -48,6 +58,14 @@
     </div>
 </div>
 {% block content %}
+<div class="container-fluid">
+    <div class="sidebar">
+        <a href="{% url 'market-home' %}">Homepage</a>
+        <a class="active" href="{% url 'profile' %}">Profile</a>
+        <a href="{% url '<market-</mar>'}">Payment Information</a>
+        <a href="{% url 'product-create' %}">Sell an item</a>
+    </div>
+</div>
 {% endblock %}
 
 <footer class="container-fluid text-center" style="background: black; padding-top: 1%; color: #FFFFFF">
@@ -55,35 +73,7 @@
 </footer>
 </body>
 </html>
-<script>
 
-
-    function checkTime(i) {
-        if (i < 10) {
-            i = "0" + i
-        }
-        // add zero in front of numbers < 10
-        return i;
-    }
-
-    function timer2() {
-        var deadline = new Date({{product.sell_on }}).getTime();
-        var x = setInterval(function () {
-            var now = new Date().getTime();
-            var t = deadline - now;
-            var days = Math.floor(t / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((t % (1000 * 60)) / 1000);
-            document.getElementById("demo").innerHTML = days + "d "
-                + hours + "h " + minutes + "m " + seconds + "s ";
-            if (t < 0) {
-                clearInterval(x);
-                document.getElementById("demo").innerHTML = "EXPIRED";
-            }
-        }, 1000);
-    }
-</script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -98,5 +88,3 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous">
 </script>
-
-
