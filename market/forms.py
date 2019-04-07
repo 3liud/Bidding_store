@@ -7,5 +7,3 @@ class BidForm(forms.ModelForm):
 	class Meta:
 		model = Product
 		fields = ['price']
-
-

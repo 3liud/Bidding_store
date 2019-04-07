@@ -1,113 +1,108 @@
 {% load static %}
-<script src="{% static 'javascripts/func.js' %}"></script>
+<script src="{% static 'javascript/func.js' %}"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>AuctionIt</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    <link rel="stylesheet" type="text/css" href="/market/static/css/main.css">
-
+	<title>AuctionIt</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="/market/static/css/main.css">
 </head>
 <body onload="startTime()">
-
 <div class="jumbotron">
-    <div class=" text-center">
-        <h1>AuctionIt</h1>
-        <p>come, buy, live</p>
-        <h3>
-            <div id="txt"></div>
-        </h3>
-    </div>
+	<div class=" text-center">
+		<h1>AuctionIt</h1>
+		<p>come, buy, live</p>
+		<h3>
+			<div id="txt"></div>
+		</h3>
+	</div>
 </div>
-
 <nav class="navbar navbar-inverse fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header ">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'about' %}">AuctionIt</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="{% url 'market-home' %}">Home</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'product-create' %}">Sell</a></li>
+	<div class="container-fluid">
+		<div class="navbar-header ">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="{% url 'about' %}">AuctionIt</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="{% url 'market-home' %}">Home</a></li>
+				{% if user.is_authenticated %}
+					<li><a href="{% url 'product-create' %}">Sell</a></li>
 
-                    <li><a href="{% url 'profile' %}">Profile</a></li>
-                    <li><a href="{% url 'about' %}">Contact</a></li>
-                    </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
-                        {% else %}
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Register</a></li>
-                    </ul>
-                {% endif %}
-        </div>
-    </div>
+					<li><a href="{% url 'profile' %}">Profile</a></li>
+					<li><a href="{% url 'about' %}">Contact</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="{% url 'logout' %}">Logout</a></li>
+						{% else %}
+						<li><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Register</a></li>
+					</ul>
+				{% endif %}
+		</div>
+	</div>
 </nav>
 <div class="container-fluid">
-    {% block content %}
-        {% for post in object_list %}
+	{% block content %}
+		{% for post in object_list %}
 
-            <article>
-                <div class=" w-full sm:w-1/1 md:w-1/2 flex flex-col p-1">
-                    {#    <div class="row">#}
-                    <div class="col-sm-4">
-                        <div class="panel panel-primary">
-                             <div class="panel-heading">
-                                <a class="btn" href="{% url 'product-detail' post.id %}">
-                                    {{ post.title }}, {{ post.category }} sold by {{ post.seller }} </a>
-                            </div>
-                            <div class="panel-body "><a href="{% url 'product-detail' post.id %}">
-                                <img src="{{ post.image.url }}"
-                                     class="sell-img img-responsive" style="width:100%" alt="Image"> </a>
-                                <div class="panel-footer">going live on: {{ post.sell_on|date:"F d, H:i" }}</div>
-                                <div class="panel-footer">
-                                    <a class="btn btn-dark mbr-3" href="{% url 'product-detail' post.id %} ">
-                                        <b> More details </b> </a></div>
-                            </div>
-                        </div>
-                    </div>
-            </article>
-        {% endfor %}
-    {% endblock content %}
+			<article>
+				<div class=" w-full sm:w-1/1 md:w-1/2 flex flex-col p-1">
+					{#    <div class="row">#}
+					<div class="col-sm-4">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<a class="btn" href="{% url 'product-detail' post.id %}">
+									{{ post.title }}, {{ post.category }} sold by {{ post.seller }} </a>
+							</div>
+							<div class="panel-body "><a href="{% url 'product-detail' post.id %}">
+								<img src="{{ post.image.url }}"
+								     class="sell-img img-responsive" style="width:100%" alt="Image"> </a>
+								<div class="panel-footer">going live on: {{ post.sell_on|date:"F d, H:i" }}</div>
+								<div class="panel-footer">
+									<a class="btn btn-dark mbr-3" href="{% url 'product-detail' post.id %} ">
+										<b> More details </b> </a></div>
+							</div>
+						</div>
+					</div>
+			</article>
+		{% endfor %}
+	{% endblock content %}
 </div>
 <hr>
-<div class="container-fluid" >
-    {% if is_paginated %}
-        {% if page_obj.has_previous %}
-            <a class="btn btn-outline-info mb-5" href="?page=1">First</a>
-            <a class="btn btn-outline-info mb-5" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-        {% endif %}
-        {% for num in page_obj.paginator.page_range %}
-            {% if page_obj.number == num %}
-                <a class="btn btn-info mb-5" href="?page={{ num }}">{{ num }}</a>
-            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                <a class="btn btn-outline-info mb-5" href="?page={{ num }}">{{ num }}</a>
-            {% endif %}
-        {% endfor %}
-        {% if page_obj.has_next %}
-            <a class="btn btn-outline-info mb-5" href="?page={{ page_obj.next_page_number }}">Next</a>
-            <a class="btn btn-outline-info mb-5" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-        {% endif %}
-    {% endif %}
+<div class="container-fluid">
+	{% if is_paginated %}
+		{% if page_obj.has_previous %}
+			<a class="btn btn-outline-info mb-5" href="?page=1">First</a>
+			<a class="btn btn-outline-info mb-5" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+		{% endif %}
+		{% for num in page_obj.paginator.page_range %}
+			{% if page_obj.number == num %}
+				<a class="btn btn-info mb-5" href="?page={{ num }}">{{ num }}</a>
+			{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+				<a class="btn btn-outline-info mb-5" href="?page={{ num }}">{{ num }}</a>
+			{% endif %}
+		{% endfor %}
+		{% if page_obj.has_next %}
+			<a class="btn btn-outline-info mb-5" href="?page={{ page_obj.next_page_number }}">Next</a>
+			<a class="btn btn-outline-info mb-5" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+		{% endif %}
+	{% endif %}
 </div>
 </body>
 <hr>
 <footer class="container-fluid text-center" style="background: black; color: #f7f7f7; padding-top: 1%">
-    <p> © 2019 AUCTIONIT. All Rights Reserved | Design by <a href="#"> Apeiron Analytics</a></p>
+	<p> © 2019 AUCTIONIT. All Rights Reserved | Design by <a href="#"> Apeiron Analytics</a></p>
 </footer>
-
 <script>
     function startTime() {
         var today = new Date();

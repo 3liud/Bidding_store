@@ -1,68 +1,72 @@
 {% load static %}
 <html lang="en">
 <head>
-    <title>AuctionIt</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script src="/market/static/javascripts/func.js"></script>
-    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
-    <link rel="stylesheet" type="text/css" href="/market/static/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/market/static/css/profiles.css">
+	<title>AuctionIt</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script src="/market/static/javascript/func.js"></script>
+	<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="/market/static/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/market/static/css/profiles.css">
 </head>
 <body onload="timer2()">
 <nav class="navbar navbar-inverse fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header ">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'market-home' %}">AuctionIt</a>
-        </div>
-        <ul class="nav navbar-nav">
-            {% if user.is_authenticated %}
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                    {% else %}
-                    <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+	<div class="container-fluid">
+		<div class="navbar-header ">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="{% url 'market-home' %}">AuctionIt</a>
+		</div>
+		<ul class="nav navbar-nav">
+			{% if user.is_authenticated %}
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="{% url 'logout' %}">Logout</a></li>
+					{% else %}
+					<li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span> Login</a></li>
 
-                </ul>
-            {% endif %}
-    </div>
+				</ul>
+			{% endif %}
+	</div>
 </nav>
 <div class="container-fluid">
-    <div class="sidebar">
-        <a href="{% url 'market-home' %}">Homepage</a><hr>
-        <a href="{% url 'profile' %}">Profile</a>
-        <a href="{% url 'address' %}">Address details</a><hr>
-        <a href="{% url 'account' %}">Payment Information</a>
-        <a href="{% url 'items-won' %}">Items Won</a><hr>
-        <a href="{% url 'product-create' %}">Sell an item</a><hr>
-    </div>
+	<div class="sidebar">
+		<a href="{% url 'market-home' %}">Homepage</a>
+		<hr>
+		<a href="{% url 'profile' %}">Profile</a>
+		<a href="{% url 'address' %}">Address details</a>
+		<hr>
+		<a href="{% url 'account' %}">Payment Information</a>
+		<a href="{% url 'items-won' %}">Items Won</a>
+		<hr>
+		<a href="{% url 'product-create' %}">Sell an item</a>
+		<hr>
+	</div>
 </div>
 
 <div class="container-fluid" style="background: darkslategrey; align-content: center; color: red; font-size: larger ">
-    <div style="background: #FFFFFF; text-align: center; width: inherit;">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tag }}">
-                {{ message }}
-            {% endfor %}
-        {% endif %}
-        </div>
-    </div>
+	<div style="background: #FFFFFF; text-align: center; width: inherit;">
+		{% if messages %}
+			{% for message in messages %}
+				<div class="alert alert-{{ message.tag }}">
+				{{ message }}
+			{% endfor %}
+		{% endif %}
+		</div>
+	</div>
 </div>
 {% block content %}
 
 {% endblock %}
 
 <footer class="container-fluid text-center" style="background: black; padding-top: 1%; color: #FFFFFF">
-    <p> © 2019 AUCTIONIT. All Rights Reserved | Design by <a href="#"> Apeiron Analytics</a></p>
+	<p> © 2019 AUCTIONIT. All Rights Reserved | Design by <a href="#"> Apeiron Analytics</a></p>
 </footer>
 </body>
 </html>

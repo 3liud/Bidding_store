@@ -2,91 +2,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>AuctionIt</title>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script src="/market/static/javascripts/func.js"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    <link rel="stylesheet" type="text/css" href="/market/static/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/market/static/css/profiles.css">
+	<title>AuctionIt</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script src="/market/static/javascript/func.js"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="/market/static/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/market/static/css/profiles.css">
 </head>
 <body onload="timer2()">
 <nav class="navbar navbar-inverse fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header ">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'about' %}">AuctionIt</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="{% url 'market-home' %}">Home</a></li>
-            {% if user.is_authenticated %}
-                <li><a href="{% url 'product-create' %}">Sell</a></li>
-                <li><a href="{% url 'profile' %}">Profile</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                    {% else %}
-                    <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span> Login</a></li>
-                    <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-shopping-cart"></span>
-                        Register</a></li>
-                </ul>
-            {% endif %}
-    </div>
+	<div class="container-fluid">
+		<div class="navbar-header ">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="{% url 'about' %}">AuctionIt</a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="{% url 'market-home' %}">Home</a></li>
+			{% if user.is_authenticated %}
+				<li><a href="{% url 'product-create' %}">Sell</a></li>
+				<li><a href="{% url 'profile' %}">Profile</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="{% url 'logout' %}">Logout</a></li>
+					{% else %}
+					<li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+					<li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-shopping-cart"></span>
+						Register</a></li>
+				</ul>
+			{% endif %}
+	</div>
 </nav>
 <div class="container-fluid" style="background: darkslategrey; align-content: center; color: red; font-size: larger ">
-    <div style="background: #FFFFFF; text-align: center; width: inherit;">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tag }}">
-                {{ message }}
-            {% endfor %}
-        {% endif %}
-        </div>
-    </div>
+	<div style="background: #FFFFFF; text-align: center; width: inherit;">
+		{% if messages %}
+			{% for message in messages %}
+				<div class="alert alert-{{ message.tag }}">
+				{{ message }}
+			{% endfor %}
+		{% endif %}
+		</div>
+	</div>
 </div>
 {% block content %}
 {% endblock %}
-
 <footer class="container-fluid text-center" style="background: black; padding-top: 1%; color: #FFFFFF">
-    <p> © 2019 AUCTIONIT. All Rights Reserved | Design by <a href="#"> Apeiron Analytics</a></p>
+	<p> © 2019 AUCTIONIT. All Rights Reserved | Design by <a href="#"> Apeiron Analytics</a></p>
 </footer>
 </body>
 </html>
-<script>
-
-
-    function checkTime(i) {
-        if (i < 10) {
-            i = "0" + i
-        }
-        // add zero in front of numbers < 10
-        return i;
-    }
-    function timer2() {
-    var deadline = new Date( {{product.sell_on }}).getTime();
-    var x = setInterval(function () {
-        var now = new Date().getTime();
-        var t = deadline - now;
-        var days = Math.floor(t / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((t % (1000 * 60)) / 1000);
-        document.getElementById("demo").innerHTML = days + "d "
-            + hours + "h " + minutes + "m " + seconds + "s ";
-        if (t < 0) {
-            clearInterval(x);
-            document.getElementById("demo").innerHTML = "EXPIRED";
-        }
-    }, 1000);}
-</script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 {#<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"#}
@@ -103,6 +74,6 @@
         crossorigin="anonymous">
 </script>
 {% load static %}
-<script src="{% static 'javascripts/func.js' %}" type="text/javascript"></script>
+<script src="{% static 'javascript/func.js' %}" type="text/javascript"></script>
 
 
