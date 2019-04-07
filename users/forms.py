@@ -21,18 +21,21 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ProfileUpdateForm(forms.ModelForm):
+	email = forms.EmailField()
 	class Meta:
 		model = Profile
 		fields = ['image']
 		
 		
 class UserAccountForm(forms.ModelForm):
+	email = forms.EmailField()
 	class Meta:
 		model = Account
-		fields = ['cardNumber', 'Account_Balance']
+		fields = ['cardNumber', 'Account_Balance', 'email']
 
 
 class UserAddressForm(forms.ModelForm):
+	email = forms.EmailField()
 	class Meta:
 		model = Address
-		fields = ['county', 'country', 'address', 'postal_code']
+		fields = ['county', 'country', 'address', 'email', 'postal_code']
