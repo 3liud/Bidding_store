@@ -108,4 +108,12 @@ class UserProductListView(ListView):
         return Product.objects.filter(seller=user).order_by('-date_posted')
 
 
+class UserProductWonListView(ListView):
+    model = Bidder
+    template_name = 'users/Itemswon.html'
+
+    def get_queryset(self):
+        items = Bidder.objects.filter(bid_status='WINNER')
+        print(items)
+        return items
 

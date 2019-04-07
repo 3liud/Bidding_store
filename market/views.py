@@ -1,13 +1,10 @@
-from io import BytesIO
 from django.contrib import messages
-from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import render
-from django.template.loader import get_template
-from xhtml2pdf import pisa
-from django.views.generic import View
-from django.utils import timezone
+
 from .models import *
+
+
 # from .render import Render
 
 

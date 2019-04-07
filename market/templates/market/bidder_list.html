@@ -20,21 +20,6 @@
                     <td>{{ bid.user_name }}</td>
                     <td>Ksh. {{ bid.bid_amount }}</td>
                     <td>{{ bid.created }}</td>
-                {% if object.seller != user and bid.user_name == user %}
-                    <td>  <form class="" action="{% url 'create-bid' %}" method="post">
-                            {% csrf_token %}
-                               <div class="form-group">
-                                    <input type="text" class="form-control" id="bid_amount" name="bid_amount"
-                                           placeholder="Enter your bid amount:" required><br>
-                                    <input type="hidden" value='{{ product_list.price }}' name="minimum_price"
-                                           id="minimum_price">
-                                    <input type="hidden" value='{{ product_list.id }}' name="product_id"
-                                           id="product_id">
-                                    <button class="btn btn-lg btn-block" type="submit">update bid</button>
-                                </div>
-                              </form>
-                    </td>
-                {% endif %}
                 </tr>
             {% endfor %}
             </tbody>
@@ -42,6 +27,9 @@
     {% else %}
         <h2 style="text-align: center; color: black">No bids!!</h2>
     {% endif %}
+    <div>
+        <a href="{% url 'market-home' %}">Go Back Home</a>
+    </div>
     </div>
     <br>
     <br><br> <br><br>  <br><br><br><br> <br><br> <br><br> <br><br>
