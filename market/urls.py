@@ -4,6 +4,7 @@ from . import classviews
 
 urlpatterns = [
 	path('home/', classviews.ProductListView.as_view(), name='market-home'),
+	path('post/agriculture/', classviews.AgriProdListView.as_view(), name='agri-product'),
 	path('product-detail/<int:pk>/', market.views.bid_information_view, name='product-detail'),
 	path('post/new/', classviews.ProductCreateView.as_view(), name='product-create'),
 	path('post/viewproduct/', classviews.ProductListView.as_view(), name='view-product'),
@@ -15,6 +16,5 @@ urlpatterns = [
 	path('', market.classviews.about, name='about'),
 	path('get_bidding_time/', market.views.get_bidding_time, name='get_bidding_time'),
 	path('pay/<int:pk>', market.views.make_pay, name='pay'),
-	# path('render/pdf/<int:pk>', market.views.Pdf.as_view(), name='notify'),
 	path('reset_bid_time/', market.views.reset_bid_time, name='reset_bid_time')
 ]
