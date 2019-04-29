@@ -69,7 +69,7 @@
 						<div class="panel panel-primary">
 							<div class="panel-heading">
 								<a class="btn" href="{% url 'product-detail' post.id %}">
-									{{ post.title }}, {{ post.category }} sold by {{ post.seller }} </a>
+									{{ post.title }}, {{ post.type }} sold by {{ post.seller }} </a>
 							</div>
 							<div class="panel-body "><a href="{% url 'product-detail' post.id %}">
 								<img src="{{ post.image.url }}"
